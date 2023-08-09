@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_drawing.c                                      :+:      :+:    :+:   */
+/*   player_drawing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 10:22:03 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/08 21:31:37 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/08/08 21:32:08 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/08/08 22:07:32 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void    cub_draw(t_cub *data)
+void    player_draw(t_cub *data)
 {
     int i;
     int j;
 
-    i = data->draw.x1;
-    j = data->draw.y1;
+    i = data->draw.px1;
+    j = data->draw.py1;
 
-    while (j <= data->draw.y2)
+    while (j <= data->draw.py2)
     {
-        while (i <= data->draw.x2)
+        while (i <= data->draw.px2)
         {
-            if (i == data->draw.x1 || j == data->draw.y1 || i == data->draw.x2 || j == data->draw.y2)
-            {
-                data->border_color = 0xed4245;
-                my_put_pixel(data, i, j, data->border_color);
-            }
-            else
-                my_put_pixel(data, i, j, data->color);
+            data->color = 0x57f287;
+            my_put_pixel(data, i, j, data->color);
             i++;
         }
-        i = data->draw.x1;
+        i = data->draw.px1;
         j++;
     }
 }

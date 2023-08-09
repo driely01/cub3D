@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 13:56:33 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/07 14:15:42 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:32:24 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char    *ft_strdup(char *str)
     new_str = malloc(sizeof(char) * lenght + 1);
     if (!new_str)
         return (NULL);
-    while (str[i])
+    while (str[i] != '\n' && str[i])
     {
         new_str[i] = str[i];
         i++;

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/08 15:31:13 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:14:24 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,20 @@
 
 // Macros
 # define HEIGHT 1024
-# define WIDTH 1920
-# define UNIT 44
+# define WIDTH 1820
+# define UNIT 32
+
+// keys
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define ESC 53
+
 
 // get next line struct
 typedef struct collecion
@@ -42,6 +54,7 @@ typedef struct collecion
 // drawing struct
 typedef struct s_drawing
 {
+    char **line;
     int x1;
     int x2;
     int y1;
@@ -51,6 +64,13 @@ typedef struct s_drawing
     int px2;
     int py2;
 }   t_drawing;
+
+// coordinates
+typedef struct s_cordt
+{
+    int width;
+    int height;
+}   t_dordt;
 
 // mlx struct
 typedef struct s_cub
@@ -65,6 +85,7 @@ typedef struct s_cub
     void                *mlx;
     void                *mlx_win;
     struct s_drawing    draw;
+    struct s_cordt      cordt;
 }   t_cub;
 
 
@@ -79,9 +100,16 @@ void    check_before_draw(t_cub *data, int x1, int y1, int x2, int y2);
 // put pixel
 void    my_put_pixel(t_cub *data, int x, int y, int color);
 
-// cub drawing
-// void    cub_draw(t_cub *data, int x1, int y1, int x2, int y2);
+// mlx initialize images, hooks and windows
+void    init_win_put_img(t_cub *img, int choice);
+
+// mlx key events
+int     movement(int code, t_cub *data);
+int     destroy(t_cub *data);
+
+// cub && player drawing
 void    cub_draw(t_cub *data);
+void    player_draw(t_cub *data);
 
 // get next line functions
 size_t	ft_strlen(const char *str);
@@ -95,14 +123,24 @@ int		stc(t_collecion *vb);
 
 // strings
 char    *ft_strdup(char *str);
+int	    ft_strncmp(char *s1, char *s2, size_t n);
 
 // map array
-char    **fill_map_array(void);
-int    count_lines_map(void);
+int     fill_map_array(t_cub *img, char *file_name);
+int     count_lines_map(char *file_name);
 int     check_valid_line(char *line);
+int     find_tall_line(t_cub *img);
 
 // drawing mini map
-void    initail_and_fill(t_cub *img, char **line, int i, int j);
+void    initail_and_fill(t_cub *img, int i, int j);
 int     draw_mini_map(t_cub *img);
+
+// drawing player movement 2D
+int     draw_move_player_2d(t_cub *img);
+void    initail_and_fill_player(t_cub *img, int i, int j);
+
+// check extantion file
+int     check_if_dote_cub(char *str, int start, int end);
+int     check_file_name(char *str);
 
 #endif

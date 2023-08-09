@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_pixel.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 10:26:13 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/09 16:19:02 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/08/09 20:05:56 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/08/09 20:06:22 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void my_put_pixel(t_cub *data, int x, int y, int color)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-    char    *dst;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-    if (x < data->cordt.width && y < data->cordt.height)
-    {
-        dst = data->addr + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
-        *(unsigned int*)dst = color;
-    }
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	i = 0;
+	while (n--)
+	{
+		if (str1[i] != str2[i] || str1[i] == 0 || str2[i] == 0)
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
 }

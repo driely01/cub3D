@@ -6,33 +6,33 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/08 15:26:10 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:16:45 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    init_win_put_img(t_cub *img, int choice)
-{
-    if (choice == 1)
-    {
-        img->mlx = mlx_init();
-        img->mlx_win = mlx_new_window(img->mlx, WIDTH, HEIGHT, "Cub3D");
-        img->img = mlx_new_image(img->mlx, WIDTH, HEIGHT);
-        img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_lenght, &img->endian);
-    }
-    else if (choice == 2)
-        mlx_loop(img->mlx);
-}
-
-int main(void)
+int main(int argc, char **argv)
 {
     t_cub   img;
 
-    init_win_put_img(&img, 1);
-    if (!draw_mini_map(&img))
-        return (1);
-    init_win_put_img(&img, 2);
+    if (argc > 1)
+    {
+        if (!check_file_name(argv[1]))
+            return (printf("invalid file\n"), 1);
+        fill_map_array(&img, argv[1]);
+        img.cordt.width = find_tall_line(&img) * UNIT;
+        img.cordt.height = count_lines_map(argv[1]) * UNIT;
+        init_win_put_img(&img, 1);
+        if (!draw_mini_map(&img))
+        {
+            printf("there is no map\n");
+            return (1);
+        }
+        init_win_put_img(&img, 2);
+    }
+    else
+        printf("no file entered\n");
     return (0);
 }
 

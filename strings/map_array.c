@@ -6,11 +6,29 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:25:00 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/07 16:28:17 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:17:29 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int find_tall_line(t_cub *img)
+{
+    int count;
+    size_t linelen;
+    int i;
+
+    count = -1;
+    i = 0;
+    while (img->draw.line[i])
+    {
+        linelen = ft_strlen(img->draw.line[i]);
+        if (count < (int)linelen)
+            count = (int)linelen;
+        i++;
+    }
+    return (count);
+}
 
 int     check_valid_line(char *line)
 {
@@ -31,14 +49,14 @@ int     check_valid_line(char *line)
         return (0);
 }
 
-int    count_lines_map(void)
+int    count_lines_map(char *file_name)
 {
     char    *line;
     int     fd;
     int     i;
     
     i = 0;
-    fd = open("map", O_RDONLY, 0777);
+    fd = open(file_name, O_RDONLY, 0777);
     if (fd == -1)
         return (i);
     line = get_next_line(fd);
@@ -54,32 +72,31 @@ int    count_lines_map(void)
     return (i);
 }
 
-char    **fill_map_array(void)
+int    fill_map_array(t_cub *img, char *file_name)
 {
     size_t  i;
     size_t  map_lenght;
     char    *line;
-    char    **map;
     int     fd;
 
     i = 0;
-    map = NULL;
-    map_lenght = count_lines_map();
+    map_lenght = count_lines_map(file_name);
     if (map_lenght > 0)
-        map = malloc(sizeof(char *) * (map_lenght + 1));
-    if (!map)
-        return (NULL);
-    fd = open("map", O_RDONLY, 0777);
+        img->draw.line = malloc(sizeof(char *) * (map_lenght + 1));
+    if (!img->draw.line)
+        return (0);
+    fd = open(file_name, O_RDONLY, 0777);
     if (fd == -1)
-        return (NULL);
+        return (0);
     line = get_next_line(fd);
     while (line)
     {
-        map[i++] = ft_strdup(line);
+        img->draw.line[i++] = ft_strdup(line);
         free(line);
         line = get_next_line(fd);
     }
-    map[i] = NULL;
+    img->draw.line[i] = NULL;
     free(line);
-    return (map);
+    close(fd);
+    return (1);
 }
