@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:40:01 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/08 13:43:39 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:23:10 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void    bresenham_x_axis(t_cub *data, int x1, int y1, int x2, int y2)
     
     while (x <= x2)
     {
-        printf("point(%d, %d)\n", x, y);
+        // printf("point(%d, %d)\n", x, y);
         my_put_pixel(data, x, y, data->color);
         x++;
         check_dy(&y, dy, dx, &p);
@@ -106,7 +106,7 @@ void    bresenham_y_axis(t_cub *data, int x1, int y1, int x2, int y2)
 
     while (y <= y2)
     {
-        printf("point(%d, %d)\n", x, y);
+        // printf("point(%d, %d)\n", x, y);
         my_put_pixel(data, x, y, data->color);
         y++;
         check_dx(&x, dx, dy, &p);

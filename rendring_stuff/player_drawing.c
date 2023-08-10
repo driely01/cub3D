@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 21:32:08 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/08 22:07:32 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:01:04 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ void    player_draw(t_cub *data)
     int i;
     int j;
 
-    i = data->draw.px1;
-    j = data->draw.py1;
-
-    while (j <= data->draw.py2)
+    i = -data->draw.pr;
+    j = -data->draw.pr;
+    while (i <= data->draw.pr)
     {
-        while (i <= data->draw.px2)
+        j = -data->draw.pr;
+        while (j < data->draw.pr)
         {
-            data->color = 0x57f287;
-            my_put_pixel(data, i, j, data->color);
-            i++;
+            if (i * i + j * j <= data->draw.pr * data->draw.pr)
+                my_put_pixel(data, data->draw.px + j, data->draw.py + i, 0x57f287);
+            j++;
         }
-        i = data->draw.px1;
-        j++;
+        i++;
     }
 }

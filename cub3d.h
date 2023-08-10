@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/09 20:14:24 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:56:01 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define RIGHT 124
 # define ESC 53
 
+// PI
+# define PI 3.14159265359
+
 
 // get next line struct
 typedef struct collecion
@@ -59,10 +62,9 @@ typedef struct s_drawing
     int x2;
     int y1;
     int y2;
-    int px1;
-    int py1;
-    int px2;
-    int py2;
+    int px;
+    int py;
+    int pr;
 }   t_drawing;
 
 // coordinates
@@ -71,6 +73,15 @@ typedef struct s_cordt
     int width;
     int height;
 }   t_dordt;
+
+typedef struct s_rotation
+{
+    double px;
+    double py;
+    double pdx;
+    double pdy;
+    double pa;
+}   t_rotation;
 
 // mlx struct
 typedef struct s_cub
@@ -86,6 +97,7 @@ typedef struct s_cub
     void                *mlx_win;
     struct s_drawing    draw;
     struct s_cordt      cordt;
+    struct s_rotation   rot;
 }   t_cub;
 
 
