@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/10 18:56:01 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:15:03 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # endif
 
 // Macros
-# define HEIGHT 1024
-# define WIDTH 1820
+# define HEIGHT 500
+# define WIDTH 1200
 # define UNIT 32
 
 // keys
@@ -40,10 +40,6 @@
 # define LEFT 123
 # define RIGHT 124
 # define ESC 53
-
-// PI
-# define PI 3.14159265359
-
 
 // get next line struct
 typedef struct collecion
@@ -62,9 +58,12 @@ typedef struct s_drawing
     int x2;
     int y1;
     int y2;
-    int px;
-    int py;
-    int pr;
+    double px;
+    double py;
+    double pr;
+    double pdx;
+    double pdy;
+    double pa;
 }   t_drawing;
 
 // coordinates

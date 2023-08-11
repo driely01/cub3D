@@ -1,0 +1,4 @@
+how to use it
+=> should save the player position
+=> then check the key's release or down
+=> then rander the frames 
