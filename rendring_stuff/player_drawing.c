@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 21:32:08 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/10 11:01:04 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:46:22 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ void    player_draw(t_cub *data)
         }
         i++;
     }
+    data->color = 0x57f287;
+    check_before_draw(data, data->draw.px, data->draw.py, data->draw.px + data->draw.pdx * 5,
+    data->draw.py + data->draw.pdy * 5);
 }
