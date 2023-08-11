@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:10:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/11 18:14:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:39:34 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int movement(int code, t_cub *data)
     }
     else if (code == KEY_W)
     {
-        if (data->draw.line[(int)floor(nextpy / UNIT)][(int)floor(nextpx / UNIT)] != '1'
-            && data->draw.line[(int)floor(nextpy / UNIT)][(int)floor(nextpx / UNIT)] != ' '
-            && data->draw.line[(int)floor(nextpy / UNIT)][(int)floor(nextpx / UNIT)] != 0
-            && data->draw.line[(int)floor(nextpy / UNIT)][(int)floor(data->draw.px / UNIT)] != '1'
+        if (data->draw.line[(int)floor(nextpy / UNIT)][(int)floor(data->draw.px / UNIT)] != '1'
             && data->draw.line[(int)floor(data->draw.py / UNIT)][(int)floor(nextpx / UNIT)] != '1')
         {
             data->draw.px += data->draw.pdx;
@@ -51,10 +48,7 @@ int movement(int code, t_cub *data)
     }
     else if (code == KEY_S)
     {
-        if (data->draw.line[(int)floor(prevpy / UNIT)][(int)floor(prevpx / UNIT)] != '1'
-            && data->draw.line[(int)floor(prevpy / UNIT)][(int)floor(prevpx / UNIT)] != ' '
-            && data->draw.line[(int)floor(prevpy / UNIT)][(int)floor(prevpx / UNIT)] != 0
-            && data->draw.line[(int)floor(prevpy / UNIT)][(int)floor(data->draw.px / UNIT)] != '1'
+        if (data->draw.line[(int)floor(prevpy / UNIT)][(int)floor(data->draw.px / UNIT)] != '1'
             && data->draw.line[(int)floor(data->draw.py / UNIT)][(int)floor(prevpx / UNIT)] != '1')
         {
             data->draw.px -= data->draw.pdx;
