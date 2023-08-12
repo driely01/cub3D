@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/11 18:15:03 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/12 16:02:45 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_Q 12
+# define KEY_E 14
 # define UP 126
 # define DOWN 125
 # define LEFT 123
@@ -58,6 +60,14 @@ typedef struct s_drawing
     int x2;
     int y1;
     int y2;
+
+    int forward;
+    int backward;
+    int moveleft;
+    int moveright;
+    int rotleft;
+    int rotright;
+    
     double px;
     double py;
     double pr;
@@ -113,13 +123,16 @@ void    my_put_pixel(t_cub *data, int x, int y, int color);
 
 // mlx initialize images, hooks and windows
 void    init_win_put_img(t_cub *img, int choice);
+void    destroy_init_img(t_cub *img, int choice);
 
 // mlx key events
-int     movement(int code, t_cub *data);
 int     destroy(t_cub *data);
+int     key_press(int keycode, t_cub *data);
+int     key_release(int keycode, t_cub *data);
 
 // cub && player drawing
 void    cub_draw(t_cub *data);
+void    border_cub_draw(t_cub *data);
 void    player_draw(t_cub *data);
 
 // get next line functions
@@ -139,19 +152,27 @@ int	    ft_strncmp(char *s1, char *s2, size_t n);
 // map array
 int     fill_map_array(t_cub *img, char *file_name);
 int     count_lines_map(char *file_name);
-int     check_valid_line(char *line);
 int     find_tall_line(t_cub *img);
+int     find_map_start(char *line);
 
 // drawing mini map
 void    initail_and_fill(t_cub *img, int i, int j);
 int     draw_mini_map(t_cub *img);
 
 // drawing player movement 2D
-int     draw_move_player_2d(t_cub *img);
+int     drawing_all_things(t_cub *img);
+void    draw_move_player_2d(t_cub *img);
 void    initail_and_fill_player(t_cub *img, int i, int j);
 
 // check extantion file
 int     check_if_dote_cub(char *str, int start, int end);
 int     check_file_name(char *str);
+
+// player movement and rotations
+void    lateral_move(t_cub *data);
+void    straight_move(t_cub *data);
+void    move_rotate_player(t_cub *data);
+void	move_right_end_check(t_cub *data);
+void	move_left_and_check(t_cub *data);
 
 #endif

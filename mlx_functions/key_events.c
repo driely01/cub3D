@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:10:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/11 20:39:34 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:27:32 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,62 +19,45 @@ int destroy(t_cub *data)
     return (0);
 }
 
-int movement(int code, t_cub *data)
+int key_press(int keycode, t_cub *data)
 {
-    double nextpx;
-    double nextpy;
-    double prevpx;
-    double prevpy;
-
-    nextpx = data->draw.px + data->draw.pdx;
-    nextpy = data->draw.py + data->draw.pdy;
-    prevpx = data->draw.px - data->draw.pdx;
-    prevpy = data->draw.py - data->draw.pdy;
-    
-    if (code == ESC)
+    if (keycode == ESC)
     {
         mlx_destroy_window(data->mlx, data->mlx_win);
         exit (0);
     }
-    else if (code == KEY_W)
-    {
-        if (data->draw.line[(int)floor(nextpy / UNIT)][(int)floor(data->draw.px / UNIT)] != '1'
-            && data->draw.line[(int)floor(data->draw.py / UNIT)][(int)floor(nextpx / UNIT)] != '1')
-        {
-            data->draw.px += data->draw.pdx;
-            data->draw.py += data->draw.pdy;
-            draw_move_player_2d(data);
-        }
-    }
-    else if (code == KEY_S)
-    {
-        if (data->draw.line[(int)floor(prevpy / UNIT)][(int)floor(data->draw.px / UNIT)] != '1'
-            && data->draw.line[(int)floor(data->draw.py / UNIT)][(int)floor(prevpx / UNIT)] != '1')
-        {
-            data->draw.px -= data->draw.pdx;
-            data->draw.py -= data->draw.pdy;
-            draw_move_player_2d(data);
-        }
-    }
-    else if (code == LEFT)
-    {
-        data->draw.pa -= 0.05;
-        if (data->draw.pa < 0)
-            data->draw.pa += 2 * M_PI;
-        data->draw.pdx = cos(data->draw.pa) * 5;
-        data->draw.pdy = sin(data->draw.pa) * 5;
-        draw_move_player_2d(data);
-    }
-    else if (code == RIGHT)
-    {
-        data->draw.pa += 0.05;
-        if (data->draw.pa > 2 * M_PI)
-            data->draw.pa -= 2 * M_PI;
-        data->draw.pdx = cos(data->draw.pa) * 5;
-        data->draw.pdy = sin(data->draw.pa) * 5;
-        draw_move_player_2d(data);
-    }
+    else if (keycode == KEY_W)
+        data->draw.forward = 1;
+    else if (keycode == KEY_S)
+        data->draw.backward = 1;
+    else if (keycode == KEY_Q)
+        data->draw.moveleft = 1;
+    else if (keycode == KEY_E)
+        data->draw.moveright = 1;
+    else if (keycode == KEY_A)
+        data->draw.rotleft = 1;
+    else if (keycode == KEY_D)
+        data->draw.rotright = 1;
     else
         return (0);
-    return (0);
+    return (1);
+}
+
+int key_release(int keycode, t_cub *data)
+{
+    if (keycode == KEY_W)
+        data->draw.forward = 0;
+    else if (keycode == KEY_S)
+        data->draw.backward = 0;
+    else if (keycode == KEY_Q)
+        data->draw.moveleft = 0;
+    else if (keycode == KEY_E)
+        data->draw.moveright = 0;
+    else if (keycode == KEY_A)
+        data->draw.rotleft = 0;
+    else if (keycode == KEY_D)
+        data->draw.rotright = 0;
+    else
+        return (0);
+    return (1);
 }
