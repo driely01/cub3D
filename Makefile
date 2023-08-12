@@ -5,23 +5,29 @@ BRESENHAM = bresenham_algo/
 RENDER = rendring_stuff/
 STRINGS = strings/
 MLX = mlx_functions/
+COORD = coordinates/
 
 SRC = main.c \
 	  ${BRESENHAM}bresenham.c \
 	  ${BRESENHAM}bresenham_utils_fn.c \
 	  ${RENDER}cub_drawing.c \
-	  ${RENDER}mini_map.c \
 	  ${RENDER}player_drawing.c \
 	  ${RENDER}draw_move_ply_2d.c \
+	  ${RENDER}draw_after_rot_move.c \
 	  ${STRINGS}get_next_line_utils.c \
 	  ${STRINGS}get_next_line.c \
 	  ${STRINGS}ft_strdup.c \
 	  ${STRINGS}map_array.c \
 	  ${STRINGS}check_exc_file.c \
 	  ${STRINGS}ft_strncmp.c \
+	  ${STRINGS}find_tall_line_count_lines.c \
+	  ${STRINGS}find_start_map.c \
 	  ${MLX}put_pixel.c \
 	  ${MLX}key_events.c \
-	  ${MLX}mlx_hooks_imgs.c
+	  ${MLX}mlx_hooks_imgs.c \
+	  ${COORD}mini_map.c \
+	  ${COORD}move_left_and_right.c \
+	  ${COORD}player_move_rotations.c
 
 HEADERS = cub3d.h
 
