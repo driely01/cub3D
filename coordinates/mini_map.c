@@ -6,13 +6,13 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:26:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/12 16:36:50 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:42:24 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void    initial_player_coordinate(t_cub *img)
+void	initial_player_coordinate(t_cub *img)
 {
 	img->draw.pr = 6;
 	img->draw.py = img->draw.y1 + (UNIT / 2);
@@ -21,7 +21,7 @@ void    initial_player_coordinate(t_cub *img)
 	img->draw.pdy = sin(img->draw.pa) * 1.5;
 }
 
-void    initail_and_fill(t_cub *img, int i, int j)
+void	initail_and_fill(t_cub *img, int i, int j)
 {
 	img->draw.x1 = j * UNIT;
 	img->draw.x2 = j * UNIT + UNIT;
@@ -49,7 +49,7 @@ void    initail_and_fill(t_cub *img, int i, int j)
 	}
 }
 
-int    draw_mini_map(t_cub *img)
+int	draw_mini_map(t_cub *img)
 {
 	int	i;
 	int	j;
@@ -57,7 +57,7 @@ int    draw_mini_map(t_cub *img)
 	i = 0;
 	j = 0;
 	if (!img->draw.line)
-	return (0);
+		return (0);
 	while (img->draw.line[i] && img->draw.line[i][j])
 	{
 		while (img->draw.line[i] && img->draw.line[i][j])
