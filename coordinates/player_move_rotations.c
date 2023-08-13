@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:34:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 11:56:23 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/13 13:46:32 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,18 @@ void	move_rotate_player(t_cub *data)
 	lateral_move(data);
 	if (data->draw.rotleft == 1)
 	{
-		data->draw.pa -= 0.059;
+		data->draw.pa -= ANGLE;
 		if (data->draw.pa < 0)
 			data->draw.pa += 2 * M_PI;
-		data->draw.pdx = cos(data->draw.pa) * 1.5;
-		data->draw.pdy = sin(data->draw.pa) * 1.5;
+		data->draw.pdx = cos(data->draw.pa) * RAY;
+		data->draw.pdy = sin(data->draw.pa) * RAY;
 	}
 	if (data->draw.rotright == 1)
 	{
-		data->draw.pa += 0.059;
+		data->draw.pa += ANGLE;
 		if (data->draw.pa > 2 * M_PI)
 			data->draw.pa -= 2 * M_PI;
-		data->draw.pdx = cos(data->draw.pa) * 1.5;
-		data->draw.pdy = sin(data->draw.pa) * 1.5;
+		data->draw.pdx = cos(data->draw.pa) * RAY;
+		data->draw.pdy = sin(data->draw.pa) * RAY;
 	}
 }

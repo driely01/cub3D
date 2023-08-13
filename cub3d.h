@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 11:25:26 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/13 13:56:00 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 # define LEFT 123
 # define RIGHT 124
 # define ESC 53
+
+// rotation angle
+# define ANGLE 0.059
+# define RAY 1.5
 
 // get next line struct
 typedef struct collecion
@@ -160,5 +164,7 @@ void	move_backward(t_cub *data);
 void	move_rotate_player(t_cub *data);
 void	move_right_end_check(t_cub *data);
 void	move_left_and_check(t_cub *data);
+void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
+void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
 
 #endif
