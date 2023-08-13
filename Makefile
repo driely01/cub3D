@@ -27,6 +27,7 @@ SRC = main.c \
 	  ${MLX}mlx_hooks_imgs.c \
 	  ${COORD}mini_map.c \
 	  ${COORD}move_left_and_right.c \
+	  ${COORD}wall_silde.c \
 	  ${COORD}player_move_rotations.c
 
 HEADERS = cub3d.h
