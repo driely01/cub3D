@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:34:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 11:30:49 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:56:23 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void	move_backward(t_cub *data)
 			data->draw.px -= data->draw.pdx;
 			data->draw.py -= data->draw.pdy;
 		}
+		else if (data->draw.line[(int)floor(data->draw.py / UNIT)] \
+			[(int)floor(prevpx / UNIT)] != '1')
+			data->draw.px -= data->draw.pdx;
+		else if (data->draw.line[(int)floor(prevpy / UNIT)] \
+		[(int)floor(data->draw.px / UNIT)] != '1')
+			data->draw.py -= data->draw.pdy;
 	}
 }
 
@@ -49,6 +55,12 @@ void	straight_move(t_cub *data)
 			data->draw.px += data->draw.pdx;
 			data->draw.py += data->draw.pdy;
 		}
+		else if (data->draw.line[(int)floor(data->draw.py / UNIT)] \
+			[(int)floor(nextpx / UNIT)] != '1')
+			data->draw.px += data->draw.pdx;
+		else if (data->draw.line[(int)floor(nextpy / UNIT)] \
+		[(int)floor(data->draw.px / UNIT)] != '1')
+			data->draw.py += data->draw.pdy;
 	}
 	move_backward(data);
 }
