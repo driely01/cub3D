@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 11:39:59 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/14 09:56:18 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ void	initial_vars(t_cub *data)
 	data->draw.rotright = 0;
 }
 
+void	initial_cast_vars(t_cub *data, char *str)
+{
+	data->cast.hx = 0;
+	data->cast.hy = 0;
+	data->cast.hx_offs = 0;
+	data->cast.hy_offs = 0;
+	data->cast.vx = 0;
+	data->cast.vy = 0;
+	data->cast.vx_offs = 0;
+	data->cast.vy_offs = 0;
+	data->cast.lenght = count_lines_map(str);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub	img;
@@ -33,8 +46,9 @@ int	main(int argc, char **argv)
 		fill_map_array(&img, argv[1]);
 		img.cordt.width = find_tall_line(&img) * UNIT;
 		img.cordt.height = count_lines_map(argv[1]) * UNIT;
-		init_win_put_img(&img, 1);
+		initial_cast_vars(&img, argv[1]);
 		initial_vars(&img);
+		init_win_put_img(&img, 1);
 		if (!draw_mini_map(&img))
 		{
 			printf("there is no map\n");

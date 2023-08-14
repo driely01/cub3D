@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 13:56:00 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:02:15 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 // rotation angle
 # define ANGLE 0.059
 # define RAY 1.5
+# define ONE 0.0174533
+# define INCANG 0.0008726646
 
 // get next line struct
 typedef struct collecion
@@ -83,6 +85,21 @@ typedef struct s_cordt
 	int	height;
 }	t_dordt;
 
+// ray-casting
+typedef struct s_cast
+{
+	double	hx;
+	double	hy;
+	double	hx_offs;
+	double	hy_offs;
+	double	vx;
+	double	vy;
+	double	vx_offs;
+	double	vy_offs;
+	int		lenght;
+	double	ray_ang;
+}	t_cast;
+
 // mlx struct
 typedef struct s_cub
 {
@@ -97,6 +114,7 @@ typedef struct s_cub
 	void				*mlx_win;
 	struct s_drawing	draw;
 	struct s_cordt		cordt;
+	struct s_cast		cast;
 }	t_cub;
 
 // drawing line algorithm
@@ -166,5 +184,12 @@ void	move_right_end_check(t_cub *data);
 void	move_left_and_check(t_cub *data);
 void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
 void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
+
+// ray casting
+// void	ray_casting(t_cub *data);
+// void	vertical_ray_casting(t_cub *data);
+double	ray_casting(t_cub *data);
+double	vertical_ray_casting(t_cub *data);
+void	draw_ray(t_cub *data);
 
 #endif
