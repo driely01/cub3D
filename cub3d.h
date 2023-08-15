@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/14 16:02:15 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:43:54 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <string.h>
+# include <limits.h>
 
 # define BUFFER_SIZE 1
 
@@ -45,7 +46,7 @@
 # define ANGLE 0.059
 # define RAY 1.5
 # define ONE 0.0174533
-# define INCANG 0.0008726646
+# define INCANG (M_PI / 3) / WIDTH
 
 // get next line struct
 typedef struct collecion
@@ -88,6 +89,7 @@ typedef struct s_cordt
 // ray-casting
 typedef struct s_cast
 {
+	int		lenght;
 	double	hx;
 	double	hy;
 	double	hx_offs;
@@ -96,7 +98,7 @@ typedef struct s_cast
 	double	vy;
 	double	vx_offs;
 	double	vy_offs;
-	int		lenght;
+	double	*distances;
 	double	ray_ang;
 }	t_cast;
 
