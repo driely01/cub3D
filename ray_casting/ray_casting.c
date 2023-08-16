@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:30:05 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 22:08:15 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/16 23:46:36 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	check_is_ver_wall(t_cub *data)
 {
 	if (data->cast.ray_ang > M_PI && data->cast.ray_ang < 3 * M_PI / 2
 		&& data->draw.line[(int)(data->cast.vy / UNIT) + 1] \
+		[(int)(data->cast.vx / UNIT)] == '1'
+		&& data->draw.line[(int)(data->cast.vy / UNIT)] \
+		[(int)(data->cast.vx / UNIT) + 1] == '1')
+		return (0);
+	else if (data->cast.ray_ang > M_PI / 2 && data->cast.ray_ang < M_PI
+		&& data->draw.line[(int)(data->cast.vy / UNIT) - 1] \
 		[(int)(data->cast.vx / UNIT)] == '1'
 		&& data->draw.line[(int)(data->cast.vy / UNIT)] \
 		[(int)(data->cast.vx / UNIT) + 1] == '1')
@@ -36,7 +42,13 @@ int	check_is_ver_wall(t_cub *data)
 
 int	check_is_hor_wall(t_cub *data)
 {
-	if (data->cast.ray_ang > M_PI / 2 && data->cast.ray_ang < M_PI
+	if (data->cast.ray_ang > M_PI && data->cast.ray_ang < 3 * M_PI / 2
+		&& data->draw.line[(int)(data->cast.hy / UNIT) + 1] \
+		[(int)(data->cast.hx / UNIT)] == '1'
+		&& data->draw.line[(int)(data->cast.hy / UNIT)] \
+		[(int)(data->cast.hx / UNIT) + 1] == '1')
+		return (0);
+	else if (data->cast.ray_ang > M_PI / 2 && data->cast.ray_ang < M_PI
 		&& data->draw.line[(int)(data->cast.hy / UNIT) - 1] \
 		[(int)(data->cast.hx / UNIT)] == '1'
 		&& data->draw.line[(int)(data->cast.hy / UNIT)] \

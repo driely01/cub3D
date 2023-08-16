@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 21:58:45 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/16 23:59:48 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_cast
 	double	*distances;
 	double	ray_ang;
 	double	angl_inc;
+	int		color;
 }	t_cast;
 
 // custom map
@@ -204,5 +205,7 @@ void	ray_coordinate(t_cub *data, int *i, int is_hor);
 double	distance(t_cub *data, double x2, double y2);
 double	hor_ray_casting(t_cub *data);
 double	ver_ray_casting(t_cub *data);
+
+void	draw_walls(t_cub *data, int i);
 
 #endif
