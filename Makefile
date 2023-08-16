@@ -6,6 +6,7 @@ RENDER = rendring_stuff/
 STRINGS = strings/
 MLX = mlx_functions/
 COORD = coordinates/
+RCAST = ray_casting/
 
 SRC = main.c \
 	  ${BRESENHAM}bresenham.c \
@@ -14,6 +15,7 @@ SRC = main.c \
 	  ${RENDER}player_drawing.c \
 	  ${RENDER}draw_move_ply_2d.c \
 	  ${RENDER}draw_after_rot_move.c \
+	  ${RENDER}ray_casting_draw.c \
 	  ${STRINGS}get_next_line_utils.c \
 	  ${STRINGS}get_next_line.c \
 	  ${STRINGS}ft_strdup.c \
@@ -28,13 +30,16 @@ SRC = main.c \
 	  ${COORD}mini_map.c \
 	  ${COORD}move_left_and_right.c \
 	  ${COORD}wall_silde.c \
-	  ${COORD}player_move_rotations.c
+	  ${COORD}player_move_rotations.c \
+	  ${RCAST}coordinate_and_equations.c \
+	  ${RCAST}ray_casting.c \
+	  ${RCAST}rays_angles_distances.c
 
 HEADERS = cub3d.h
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Wextra #-Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 CC = cc
 RM = rm -f
 

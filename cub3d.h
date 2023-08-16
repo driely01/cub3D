@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 13:56:00 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:06:55 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <string.h>
+# include <limits.h>
 
 # define BUFFER_SIZE 1
 
@@ -44,6 +45,7 @@
 // rotation angle
 # define ANGLE 0.059
 # define RAY 1.5
+# define ONE 0.0174533
 
 // get next line struct
 typedef struct collecion
@@ -83,6 +85,23 @@ typedef struct s_cordt
 	int	height;
 }	t_dordt;
 
+// ray-casting
+typedef struct s_cast
+{
+	int		lenght;
+	double	hx;
+	double	hy;
+	double	hx_offs;
+	double	hy_offs;
+	double	vx;
+	double	vy;
+	double	vx_offs;
+	double	vy_offs;
+	double	*distances;
+	double	ray_ang;
+	double	angl_inc;
+}	t_cast;
+
 // mlx struct
 typedef struct s_cub
 {
@@ -97,6 +116,7 @@ typedef struct s_cub
 	void				*mlx_win;
 	struct s_drawing	draw;
 	struct s_cordt		cordt;
+	struct s_cast		cast;
 }	t_cub;
 
 // drawing line algorithm
@@ -166,5 +186,17 @@ void	move_right_end_check(t_cub *data);
 void	move_left_and_check(t_cub *data);
 void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
 void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
+
+// ray casting
+double	hor_ray_casting(t_cub *data);
+double	ver_ray_casting(t_cub *data);
+int		check_is_ver_wall(t_cub *data);
+void	increment_ray_angle(t_cub *data, int is_increment);
+void	allocate_distance_array(t_cub *data);
+double	distance(t_cub *data, double x2, double y2);
+void	vertical_ray_equation(t_cub *data);
+void	horizontal_ray_equation(t_cub *data);
+void	draw_casted_rays(t_cub *data);
+void	ray_coordinate(t_cub *data, int *i, int is_hor);
 
 #endif
