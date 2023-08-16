@@ -35,7 +35,7 @@ HEADERS = cub3d.h
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 CC = cc
 RM = rm -f
 

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/15 17:43:54 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:36:48 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,8 @@ void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
 void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
 
 // ray casting
-// void	ray_casting(t_cub *data);
-// void	vertical_ray_casting(t_cub *data);
-double	ray_casting(t_cub *data);
-double	vertical_ray_casting(t_cub *data);
+double	hor_ray_casting(t_cub *data);
+double	ver_ray_casting(t_cub *data);
 void	draw_ray(t_cub *data);
 
 #endif
