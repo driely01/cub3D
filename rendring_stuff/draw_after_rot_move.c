@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:39:56 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/14 20:47:19 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:51:48 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	drawing_all_things(t_cub *img)
 {
 	destroy_init_img(img, 1);
-	// ray_casting(img);
-	// vertical_ray_casting(img);
-	draw_ray(img);
+	draw_casted_rays(img);
 	move_rotate_player(img);
 	draw_move_player_2d(img);
 	destroy_init_img(img, 2);
