@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 16:06:55 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:58:45 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define BUFFER_SIZE 1
 
 // Macros
-# define HEIGHT 500
-# define WIDTH 1200
+# define HEIGHT 1080
+# define WIDTH 1920
 # define UNIT 32
 
 // keys
@@ -102,6 +102,11 @@ typedef struct s_cast
 	double	angl_inc;
 }	t_cast;
 
+// custom map
+// typedef struct s_custom
+// {
+// 	double	
+// }	t_custom;
 // mlx struct
 typedef struct s_cub
 {
@@ -120,11 +125,11 @@ typedef struct s_cub
 }	t_cub;
 
 // drawing line algorithm
+int		ft_abs(int number);
 void	bresenham_y_axis(t_cub *data, int *pxy, int *pxy1);
 void	bresenham_x_axis(t_cub *data, int *pxy, int *pxy1);
 void	check_dy(int *y, int dy, int dx, int *p);
 void	check_dx(int *x, int dx, int dy, int *p);
-int		ft_abs(int number);
 void	check_before_draw(t_cub *data, int *pxy, int *pxy1);
 
 // put pixel
@@ -145,14 +150,14 @@ void	border_cub_draw(t_cub *data);
 void	player_draw(t_cub *data);
 
 // get next line functions
-size_t	ft_strlen(const char *str);
+int		stc(t_collecion *vb);
 void	*ft_calloc(size_t number, size_t size);
 char	*cpy(char *s, char *p);
 char	*ft_append(char *s1, char *s2);
 char	*ft_read(char **leftover, char *line, size_t i);
 char	*get_next_line(int fd);
 char	*cpy_two(char *s1, char *s2, char *p);
-int		stc(t_collecion *vb);
+size_t	ft_strlen(const char *str);
 
 // strings
 char	*ft_strdup(char *str);
@@ -188,15 +193,16 @@ void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
 void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
 
 // ray casting
-double	hor_ray_casting(t_cub *data);
-double	ver_ray_casting(t_cub *data);
 int		check_is_ver_wall(t_cub *data);
+int		check_is_hor_wall(t_cub *data);
 void	increment_ray_angle(t_cub *data, int is_increment);
 void	allocate_distance_array(t_cub *data);
-double	distance(t_cub *data, double x2, double y2);
 void	vertical_ray_equation(t_cub *data);
 void	horizontal_ray_equation(t_cub *data);
 void	draw_casted_rays(t_cub *data);
 void	ray_coordinate(t_cub *data, int *i, int is_hor);
+double	distance(t_cub *data, double x2, double y2);
+double	hor_ray_casting(t_cub *data);
+double	ver_ray_casting(t_cub *data);
 
 #endif
