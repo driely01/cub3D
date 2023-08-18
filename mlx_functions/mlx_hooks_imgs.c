@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/12 18:49:57 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:10:20 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ void	destroy_init_img(t_cub *img, int choice)
 		img->img = mlx_new_image(img->mlx, WIDTH, HEIGHT);
 		img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 				&img->line_lenght, &img->endian);
+		mlx_destroy_image(img->mlx, img->map.img);
+		img->map.img = mlx_new_image(img->mlx, 300, 300);
+		img->map.addr = mlx_get_data_addr(img->map.img,
+				&img->map.bits_per_pixel,
+				&img->map.line_lenght, &img->map.endian);
 	}
 	else if (choice == 2)
 	{
-		mlx_clear_window(img->mlx, img->mlx_win);
 		mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+		mlx_put_image_to_window(img->mlx, img->mlx_win,
+			img->map.img, 0, 0);
 	}
 }
 
@@ -37,6 +43,10 @@ void	init_win_put_img(t_cub *img, int choice)
 		img->img = mlx_new_image(img->mlx, WIDTH, HEIGHT);
 		img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 				&img->line_lenght, &img->endian);
+		img->map.img = mlx_new_image(img->mlx, 300, 300);
+		img->map.addr = mlx_get_data_addr(img->map.img,
+				&img->map.bits_per_pixel,
+				&img->map.line_lenght, &img->map.endian);
 	}
 	else if (choice == 2)
 	{

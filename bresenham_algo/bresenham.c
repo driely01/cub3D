@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:40:01 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 11:27:06 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 21:24:55 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	bresenham_x_axis(t_cub *data, int *pxy, int *pxy1)
 		p = 2 * dy - dx;
 	while (x <= pxy1[0])
 	{
-		my_put_pixel(data, x, y, data->color);
+		put_map_pixel(data, x, y, data->color);
 		x++;
 		check_dy(&y, dy, dx, &p);
 	}
@@ -98,7 +98,7 @@ void	bresenham_y_axis(t_cub *data, int *pxy, int *pxy1)
 		p = 2 * dx - dy;
 	while (y <= pxy1[1])
 	{
-		my_put_pixel(data, x, y, data->color);
+		put_map_pixel(data, x, y, data->color);
 		y++;
 		check_dx(&x, dx, dy, &p);
 	}

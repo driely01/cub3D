@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 22:18:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 23:38:38 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:11:20 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	draw_walls(t_cub *data, int i)
 	int		j;
 	double	wall_height;
 
-
-	wall_height = UNIT / (data->cast.distances[i] * cos(fabs(data->draw.pa - data->cast.ray_ang))) * HEIGHT;
+	wall_height = UNIT / (data->cast.distances[i]
+			* cos(fabs(data->draw.pa - data->cast.ray_ang))) * HEIGHT;
 	if (wall_height > HEIGHT)
 		wall_height = HEIGHT;
 	j = 0;
@@ -32,5 +32,4 @@ void	draw_walls(t_cub *data, int i)
 			my_put_pixel(data, i, j, 0x292b2c);
 		j++;
 	}
-
 }
