@@ -13,9 +13,10 @@ SRC = main.c \
 	  ${BRESENHAM}bresenham_utils_fn.c \
 	  ${RENDER}cub_drawing.c \
 	  ${RENDER}player_drawing.c \
-	  ${RENDER}draw_move_ply_2d.c \
+	  ${RENDER}draw_custom_map.c \
 	  ${RENDER}draw_after_rot_move.c \
 	  ${RENDER}ray_casting_draw.c \
+	  ${RENDER}draw_walls_3d.c \
 	  ${STRINGS}get_next_line_utils.c \
 	  ${STRINGS}get_next_line.c \
 	  ${STRINGS}ft_strdup.c \
@@ -39,7 +40,7 @@ HEADERS = cub3d.h
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 CC = cc
 RM = rm -f
 

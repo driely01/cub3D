@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:55:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 22:04:02 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:11:44 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ray_coordinate(t_cub *data, int *i, int is_hor)
 		pxy1[0] = data->cast.hx;
 		pxy1[1] = data->cast.hy;
 		data->cast.distances[(*i)++] = hor_ray_casting(data);
-		check_before_draw(data, pxy, pxy1);
+		data->cast.color = 0xee7224;
 	}
 	else if (is_hor == 0)
 	{
@@ -34,7 +34,7 @@ void	ray_coordinate(t_cub *data, int *i, int is_hor)
 		pxy1[0] = data->cast.vx;
 		pxy1[1] = data->cast.vy;
 		data->cast.distances[(*i)++] = ver_ray_casting(data);
-		check_before_draw(data, pxy, pxy1);
+		data->cast.color = 0xefae7e;
 	}
 }
 
@@ -53,6 +53,7 @@ void	draw_casted_rays(t_cub *data)
 			ray_coordinate(data, &i, 1);
 		else
 			ray_coordinate(data, &i, 0);
+		draw_walls(data, r);
 		increment_ray_angle(data, 1);
 	}
 }

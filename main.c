@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 16:07:15 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:07:27 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 		fill_map_array(&img, argv[1]);
 		img.cordt.width = find_tall_line(&img) * UNIT;
 		img.cordt.height = count_lines_map(argv[1]) * UNIT;
+		img.draw.height = count_lines_map(argv[1]);
 		initial_cast_vars(&img, argv[1]);
 		initial_vars(&img);
 		init_win_put_img(&img, 1);

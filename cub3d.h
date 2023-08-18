@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 21:58:45 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:06:55 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define ESC 53
 
 // rotation angle
-# define ANGLE 0.059
+# define ANGLE 0.049
 # define RAY 1.5
 # define ONE 0.0174533
 
@@ -70,6 +70,13 @@ typedef struct s_drawing
 	int		moveright;
 	int		rotleft;
 	int		rotright;
+	int		height;
+	int		posx;
+	int		posy;
+	int		endx;
+	int		endy;
+	double	px1;
+	double	py1;
 	double	py;
 	double	px;
 	double	pr;
@@ -100,13 +107,19 @@ typedef struct s_cast
 	double	*distances;
 	double	ray_ang;
 	double	angl_inc;
+	int		color;
 }	t_cast;
 
-// custom map
-// typedef struct s_custom
-// {
-// 	double	
-// }	t_custom;
+// mini map
+typedef struct s_map
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}	t_map;
+
 // mlx struct
 typedef struct s_cub
 {
@@ -122,6 +135,7 @@ typedef struct s_cub
 	struct s_drawing	draw;
 	struct s_cordt		cordt;
 	struct s_cast		cast;
+	struct s_map		map;
 }	t_cub;
 
 // drawing line algorithm
@@ -157,7 +171,7 @@ char	*ft_append(char *s1, char *s2);
 char	*ft_read(char **leftover, char *line, size_t i);
 char	*get_next_line(int fd);
 char	*cpy_two(char *s1, char *s2, char *p);
-size_t	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 
 // strings
 char	*ft_strdup(char *str);
@@ -172,6 +186,8 @@ int		find_map_start(char *line);
 // drawing mini map
 void	initail_and_fill(t_cub *img, int i, int j);
 int		draw_mini_map(t_cub *img);
+void	initial_player_coordinate(t_cub *img);
+void	initail_and_fill(t_cub *img, int i, int j);
 
 // drawing player movement 2D
 int		drawing_all_things(t_cub *img);
@@ -204,5 +220,12 @@ void	ray_coordinate(t_cub *data, int *i, int is_hor);
 double	distance(t_cub *data, double x2, double y2);
 double	hor_ray_casting(t_cub *data);
 double	ver_ray_casting(t_cub *data);
+
+// walls 3D
+void	draw_walls(t_cub *data, int i);
+
+// mini map
+void	put_map_pixel(t_cub *data, int x, int y, int color);
+void	draw_custom_map(t_cub *img);
 
 #endif

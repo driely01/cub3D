@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:45:38 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 22:09:01 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/18 21:27:24 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	vertical_ray_equation(t_cub *data)
 {
 	if (data->cast.ray_ang > M_PI / 2 && data->cast.ray_ang < 3 * M_PI / 2)
 	{
-		data->cast.vx = floor(data->draw.px / UNIT) * UNIT - 0.0001;
+		data->cast.vx = floor(data->draw.px / UNIT) * UNIT - 0.000001;
 		data->cast.vy = data->draw.py + (data->draw.px - data->cast.vx) 
 			* -tan(data->cast.ray_ang);
 		data->cast.vx_offs = -UNIT;
@@ -48,7 +48,7 @@ void	horizontal_ray_equation(t_cub *data)
 {
 	if (data->cast.ray_ang > M_PI)
 	{
-		data->cast.hy = floor(data->draw.py / UNIT) * UNIT - 0.0001;
+		data->cast.hy = floor(data->draw.py / UNIT) * UNIT - 0.000001;
 		data->cast.hy_offs = -UNIT;
 		data->cast.hx_offs = -data->cast.hy_offs / -tan(data->cast.ray_ang);
 		data->cast.hx = data->draw.px + (data->draw.py - data->cast.hy) 
