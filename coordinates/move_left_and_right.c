@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:01:38 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 13:55:23 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:28:11 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	move_left_and_check(t_cub *data)
 	if (data->draw.line[(int)floor(nextpy / UNIT)] \
 	[(int)floor(data->draw.px / UNIT)] != '1'
 		&& data->draw.line[(int)floor(data->draw.py / UNIT)] \
+		[(int)floor(nextpx / UNIT)] != '1'
+		&& data->draw.line[(int)floor(nextpy / UNIT)] \
 		[(int)floor(nextpx / UNIT)] != '1')
 	{
 		if (data->draw.forward || data->draw.backward)
@@ -57,6 +59,8 @@ void	move_right_end_check(t_cub *data)
 	if (data->draw.line[(int)floor(prevpy / UNIT)] \
 	[(int)floor(data->draw.px / UNIT)] != '1'
 		&& data->draw.line[(int)floor(data->draw.py / UNIT)] \
+		[(int)floor(prevpx / UNIT)] != '1'
+		&& data->draw.line[(int)floor(prevpy / UNIT)] \
 		[(int)floor(prevpx / UNIT)] != '1')
 	{
 		if (data->draw.forward || data->draw.backward)

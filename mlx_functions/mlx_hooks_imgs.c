@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/18 22:10:20 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:47:19 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	init_win_put_img(t_cub *img, int choice)
 		mlx_hook(img->mlx_win, 17, 0, destroy, img);
 		mlx_hook(img->mlx_win, 2, 0, key_press, img);
 		mlx_hook(img->mlx_win, 3, 0, key_release, img);
+		mlx_hook(img->mlx_win, 6, 0, mouse_move, img);
 		mlx_loop_hook(img->mlx, drawing_all_things, img);
 		mlx_loop(img->mlx);
 	}

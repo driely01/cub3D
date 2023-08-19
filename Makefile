@@ -27,6 +27,7 @@ SRC = main.c \
 	  ${STRINGS}find_start_map.c \
 	  ${MLX}put_pixel.c \
 	  ${MLX}key_events.c \
+	  ${MLX}mouse_events.c \
 	  ${MLX}mlx_hooks_imgs.c \
 	  ${COORD}mini_map.c \
 	  ${COORD}move_left_and_right.c \
