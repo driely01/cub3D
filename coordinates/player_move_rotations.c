@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:34:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/14 13:05:57 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:28:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	move_backward(t_cub *data)
 		if (data->draw.line[(int)floor(prevpy / UNIT)] \
 		[(int)floor(data->draw.px / UNIT)] != '1'
 			&& data->draw.line[(int)floor(data->draw.py / UNIT)] \
+			[(int)floor(prevpx / UNIT)] != '1'
+			&& data->draw.line[(int)floor(prevpy / UNIT)] \
 			[(int)floor(prevpx / UNIT)] != '1')
 		{
 			data->draw.px -= data->draw.pdx;
@@ -50,6 +52,8 @@ void	straight_move(t_cub *data)
 		if (data->draw.line[(int)floor(nextpy / UNIT)] \
 		[(int)floor(data->draw.px / UNIT)] != '1'
 			&& data->draw.line[(int)floor(data->draw.py / UNIT)] \
+			[(int)floor(nextpx / UNIT)] != '1'
+			&& data->draw.line[(int)floor(nextpy / UNIT)] \
 			[(int)floor(nextpx / UNIT)] != '1')
 		{
 			data->draw.px += data->draw.pdx;
@@ -65,10 +69,24 @@ void	straight_move(t_cub *data)
 	move_backward(data);
 }
 
+void	mouse_rot(t_cub *data)
+{
+	if (data->draw.rotleft == 2)
+	{
+		data->draw.pa += (WIDTH / pow(WIDTH, 1.7)) * data->draw.rotangl;
+		if (data->draw.pa < 0)
+			data->draw.pa += 2 * M_PI;
+		data->draw.pdx = cos(data->draw.pa) * RAY;
+		data->draw.pdy = sin(data->draw.pa) * RAY;
+		data->draw.rotleft = 0;
+	}
+}
+
 void	move_rotate_player(t_cub *data)
 {
 	straight_move(data);
 	lateral_move(data);
+	mouse_rot(data);
 	if (data->draw.rotleft == 1)
 	{
 		data->draw.pa -= ANGLE;

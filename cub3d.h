@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/18 22:06:55 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/19 17:51:19 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_drawing
 	int		posy;
 	int		endx;
 	int		endy;
+	int		prevx;
+	double	rotangl;
 	double	px1;
 	double	py1;
 	double	py;
@@ -157,6 +159,9 @@ void	destroy_init_img(t_cub *img, int choice);
 int		destroy(t_cub *data);
 int		key_press(int keycode, t_cub *data);
 int		key_release(int keycode, t_cub *data);
+
+// mlx mouse events
+int		mouse_move(int x, int y, t_cub *data);
 
 // cub && player drawing
 void	cub_draw(t_cub *data);
