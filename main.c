@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/18 22:07:27 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:12:21 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	initial_cast_vars(t_cub *data, char *str)
 	data->cast.lenght = count_lines_map(str);
 	data->cast.distances = NULL;
 	data->cast.angl_inc = (M_PI / 3) / WIDTH;
+}
+
+void	initial_text(t_cub *data)
+{
+	data->text.down_add = NULL;
+	data->text.down_img = NULL;
+	data->text.left_add = NULL;
+	data->text.left_img = NULL;
+	data->text.right_add = NULL;
+	data->text.right_img = NULL;
+	data->text.up_add = NULL;
+	data->text.up_img = NULL;
 }
 
 int	main(int argc, char **argv)

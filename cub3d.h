@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/19 17:51:19 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:23:50 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 // Macros
 # define HEIGHT 1080
-# define WIDTH 1920
+# define WIDTH 1600
 # define UNIT 32
 
 // keys
@@ -97,19 +97,23 @@ typedef struct s_cordt
 // ray-casting
 typedef struct s_cast
 {
-	int		lenght;
-	double	hx;
-	double	hy;
-	double	hx_offs;
-	double	hy_offs;
-	double	vx;
-	double	vy;
-	double	vx_offs;
-	double	vy_offs;
-	double	*distances;
-	double	ray_ang;
-	double	angl_inc;
-	int		color;
+	int				lenght;
+	int				color;
+	int				flag;
+	int				offset;
+	double			hx;
+	double			hy;
+	double			hx_offs;
+	double			hy_offs;
+	double			vx;
+	double			vy;
+	double			vx_offs;
+	double			vy_offs;
+	double			*distances;
+	double			ray_ang;
+	double			angl_inc;
+	double			wall_height;
+	double			step;
 }	t_cast;
 
 // mini map
@@ -121,6 +125,40 @@ typedef struct s_map
 	int		line_lenght;
 	int		endian;
 }	t_map;
+
+// textures
+typedef struct s_text
+{
+	void			*left_img;
+	char			*left_add;
+	int				left_width;
+	int				left_height;
+	int				left_bits_per_pixel;
+	int				left_line_lenght;
+	int				left_endian;
+	void			*right_img;
+	char			*right_add;
+	int				right_width;
+	int				right_height;
+	int				right_bits_per_pixel;
+	int				right_line_lenght;
+	int				right_endian;
+	void			*up_img;
+	char			*up_add;
+	int				up_width;
+	int				up_height;
+	int				up_bits_per_pixel;
+	int				up_line_lenght;
+	int				up_endian;
+	void			*down_img;
+	char			*down_add;
+	int				down_width;
+	int				down_height;
+	int				down_bits_per_pixel;
+	int				down_line_lenght;
+	int				down_endian;
+	unsigned int	*color;
+}	t_text;
 
 // mlx struct
 typedef struct s_cub
@@ -138,6 +176,7 @@ typedef struct s_cub
 	struct s_cordt		cordt;
 	struct s_cast		cast;
 	struct s_map		map;
+	struct s_text		text;
 }	t_cub;
 
 // drawing line algorithm
@@ -226,11 +265,18 @@ double	distance(t_cub *data, double x2, double y2);
 double	hor_ray_casting(t_cub *data);
 double	ver_ray_casting(t_cub *data);
 
-// walls 3D
-void	draw_walls(t_cub *data, int i);
+// walls 3D, floor and ceil
+void	draw_ceil_floor(t_cub *data, int i);
 
 // mini map
 void	put_map_pixel(t_cub *data, int x, int y, int color);
 void	draw_custom_map(t_cub *img);
+
+void	up_textures(t_cub *data, int i);
+void	down_textures(t_cub *data, int i);
+void	right_textures(t_cub *data, int i);
+void	left_textures(t_cub *data, int i);
+
+void	calculate_wall_height_offset(t_cub *data, int height, int i);
 
 #endif

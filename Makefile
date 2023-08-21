@@ -7,6 +7,7 @@ STRINGS = strings/
 MLX = mlx_functions/
 COORD = coordinates/
 RCAST = ray_casting/
+TEXTUR = textures_randring/
 
 SRC = main.c \
 	  ${BRESENHAM}bresenham.c \
@@ -16,7 +17,7 @@ SRC = main.c \
 	  ${RENDER}draw_custom_map.c \
 	  ${RENDER}draw_after_rot_move.c \
 	  ${RENDER}ray_casting_draw.c \
-	  ${RENDER}draw_walls_3d.c \
+	  ${RENDER}draw_ceil_floor.c \
 	  ${STRINGS}get_next_line_utils.c \
 	  ${STRINGS}get_next_line.c \
 	  ${STRINGS}ft_strdup.c \
@@ -35,7 +36,12 @@ SRC = main.c \
 	  ${COORD}player_move_rotations.c \
 	  ${RCAST}coordinate_and_equations.c \
 	  ${RCAST}ray_casting.c \
-	  ${RCAST}rays_angles_distances.c
+	  ${RCAST}rays_angles_distances.c \
+	  ${TEXTUR}left_texture.c \
+	  ${TEXTUR}down_texture.c \
+	  ${TEXTUR}right_texture.c \
+	  ${TEXTUR}calculate_wall_height_offset.c \
+	  ${TEXTUR}up_texture.c
 
 HEADERS = cub3d.h
 

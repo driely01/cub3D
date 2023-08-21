@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_walls_3d.c                                    :+:      :+:    :+:   */
+/*   calculate_wall_height_offset.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 22:18:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/18 22:11:20 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/08/21 17:19:02 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/08/21 18:03:46 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	draw_walls(t_cub *data, int i)
+void	calculate_wall_height_offset(t_cub *data, int height, int i)
 {
-	int		j;
-	double	wall_height;
-
-	wall_height = UNIT / (data->cast.distances[i]
+	data->cast.wall_height = UNIT / (data->cast.distances[i]
 			* cos(fabs(data->draw.pa - data->cast.ray_ang))) * HEIGHT;
-	if (wall_height > HEIGHT)
-		wall_height = HEIGHT;
-	j = 0;
-	while (j < HEIGHT)
-	{
-		if (j < ((HEIGHT / 2) - (wall_height / 2)))
-			my_put_pixel(data, i, j, 0xc4fff9);
-		else if (j - ((HEIGHT / 2) - (wall_height / 2)) <= wall_height)
-			my_put_pixel(data, i, j, data->cast.color);
-		else
-			my_put_pixel(data, i, j, 0x292b2c);
-		j++;
-	}
+	if (data->cast.flag == 1)
+		data->cast.offset = (int)data->cast.hx % UNIT;
+	else
+		data->cast.offset = (int)data->cast.vy % UNIT;
+	data->cast.step = height / data->cast.wall_height;
+	if (data->cast.wall_height > HEIGHT)
+		data->cast.wall_height = HEIGHT;
 }
