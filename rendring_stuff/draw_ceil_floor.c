@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 22:18:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/21 17:26:26 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/21 21:14:37 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_ceil_floor(t_cub *data, int i)
 	while (j < HEIGHT)
 	{
 		if (j < ((HEIGHT / 2) - (wall_height / 2)))
-			my_put_pixel(data, i, j, 0x131862);
+			my_put_pixel(data, i, j, 0x05071D);
 		else if (j - ((HEIGHT / 2) - (wall_height / 2)) > wall_height)
 			my_put_pixel(data, i, j, 0x292b2c);
 		j++;
