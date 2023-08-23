@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:26:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 17:40:21 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:14:48 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	initial_player_coordinate(t_cub *img)
 	img->draw.pr = 6;
 	img->draw.py = img->draw.y1 + (UNIT / 2);
 	img->draw.px = img->draw.x1 + (UNIT / 2);
-	img->draw.pdx = cos(img->draw.pa) * 1.5;
-	img->draw.pdy = sin(img->draw.pa) * 1.5;
+	img->draw.pdx = cos(img->draw.pa) * RAY;
+	img->draw.pdy = sin(img->draw.pa) * RAY;
 }
 
 void	initail_and_fill(t_cub *img, int i, int j)

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:34:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/20 22:15:03 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:39:49 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ void	mouse_rot(t_cub *data)
 {
 	if (data->draw.rotleft == 2)
 	{
-		data->draw.pa += (WIDTH / pow(WIDTH, 1.7)) * data->draw.rotangl;
+		data->draw.pa += (-atan(data->draw.xdistance))
+			* M_PI * data->draw.rotangl * 0.001;
 		if (data->draw.pa < 0)
 			data->draw.pa += 2 * M_PI;
+		if (data->draw.pa > 2 * M_PI)
+			data->draw.pa -= 2 * M_PI;
 		data->draw.pdx = cos(data->draw.pa) * RAY;
 		data->draw.pdy = sin(data->draw.pa) * RAY;
 		data->draw.rotleft = 0;

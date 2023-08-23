@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/21 17:23:50 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:01:00 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // Macros
 # define HEIGHT 1080
 # define WIDTH 1600
-# define UNIT 32
+# define UNIT 640
 
 // keys
 # define KEY_W 13
@@ -43,8 +43,9 @@
 # define ESC 53
 
 // rotation angle
-# define ANGLE 0.049
-# define RAY 1.5
+# define ANGLE 0.039
+# define RAY 44
+# define COEFF 20
 # define ONE 0.0174533
 
 // get next line struct
@@ -76,6 +77,7 @@ typedef struct s_drawing
 	int		endx;
 	int		endy;
 	int		prevx;
+	double	xdistance;
 	double	rotangl;
 	double	px1;
 	double	py1;
@@ -179,6 +181,11 @@ typedef struct s_cub
 	struct s_text		text;
 }	t_cub;
 
+// initial variables
+void	initial_drawing_vars(t_cub *data);
+void	initial_cast_vars(t_cub *data);
+void	initial_textures(t_cub *data);
+
 // drawing line algorithm
 int		ft_abs(int number);
 void	bresenham_y_axis(t_cub *data, int *pxy, int *pxy1);
@@ -235,8 +242,6 @@ void	initail_and_fill(t_cub *img, int i, int j);
 
 // drawing player movement 2D
 int		drawing_all_things(t_cub *img);
-void	draw_move_player_2d(t_cub *img);
-void	initail_and_fill_player(t_cub *img, int i, int j);
 
 // check extantion file
 int		check_if_dote_cub(char *str, int start, int end);
@@ -272,11 +277,11 @@ void	draw_ceil_floor(t_cub *data, int i);
 void	put_map_pixel(t_cub *data, int x, int y, int color);
 void	draw_custom_map(t_cub *img);
 
+// draw textures
 void	up_textures(t_cub *data, int i);
 void	down_textures(t_cub *data, int i);
 void	right_textures(t_cub *data, int i);
 void	left_textures(t_cub *data, int i);
-
 void	calculate_wall_height_offset(t_cub *data, int height, int i);
 
 #endif

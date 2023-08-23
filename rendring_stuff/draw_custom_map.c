@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:51:49 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/18 22:04:34 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/22 23:40:04 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	get_x_y(t_cub *data)
 {
-	if (data->draw.py < 150)
-		data->draw.py1 = data->draw.py;
+	if (data->draw.py / COEFF < 150)
+		data->draw.py1 = data->draw.py / COEFF;
 	else
 		data->draw.py1 = 150;
-	if (data->draw.px < 150)
-		data->draw.px1 = data->draw.px;
+	if (data->draw.px / COEFF < 150)
+		data->draw.px1 = data->draw.px / COEFF;
 	else 
 		data->draw.px1 = 150;
-	data->draw.posx = data->draw.px - 150;
-	data->draw.posy = data->draw.py - 150;
-	data->draw.endx = data->draw.px + 150;
-	data->draw.endy = data->draw.py + 150;
+	data->draw.posx = data->draw.px / COEFF - 150;
+	data->draw.posy = data->draw.py / COEFF - 150;
+	data->draw.endx = data->draw.px / COEFF + 150;
+	data->draw.endy = data->draw.py / COEFF + 150;
 	if (data->draw.posx < 0)
 		data->draw.posx = 0;
 	if (data->draw.posy < 0)
@@ -38,11 +38,11 @@ void	get_x_y(t_cub *data)
 
 void	check_and_draw_map(t_cub *img, int x, int y)
 {
-	if ((int)(img->draw.posy / UNIT) < img->draw.height
-		&& ((int)(img->draw.posx / UNIT))
-		< ft_strlen(img->draw.line[(int)(img->draw.posy / UNIT)])
-		&& img->draw.line[(int)(img->draw.posy / UNIT)] \
-		[(int)(img->draw.posx / UNIT)] == '1')
+	if ((int)(img->draw.posy / (UNIT / COEFF)) < img->draw.height
+		&& ((int)(img->draw.posx / (UNIT / COEFF)))
+		< ft_strlen(img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))])
+		&& img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))] \
+		[(int)(img->draw.posx / (UNIT / COEFF))] == '1')
 		put_map_pixel(img, x, y, 0x639d9f);
 	else
 		put_map_pixel(img, x, y, 0x046473);

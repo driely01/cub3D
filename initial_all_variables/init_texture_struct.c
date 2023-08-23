@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_events.c                                     :+:      :+:    :+:   */
+/*   init_texture_struct.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/19 11:53:07 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 16:42:48 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/08/23 17:10:03 by del-yaag          #+#    #+#             */
+/*   Updated: 2023/08/23 17:22:28 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	mouse_move(int x, int y, t_cub *data)
+void	initial_textures(t_cub *data)
 {
-	data->draw.rotangl = x - data->draw.prevx;
-	data->draw.prevx = x;
-	if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
-	{
-		data->draw.xdistance = x - data->draw.px;
-		data->draw.rotleft = 2;
-	}
-	return (1);
+	data->text.down_add = NULL;
+	data->text.down_img = NULL;
+	data->text.left_add = NULL;
+	data->text.left_img = NULL;
+	data->text.right_add = NULL;
+	data->text.right_img = NULL;
+	data->text.up_add = NULL;
+	data->text.up_img = NULL;
+	data->text.color = NULL;
 }

@@ -8,8 +8,12 @@ MLX = mlx_functions/
 COORD = coordinates/
 RCAST = ray_casting/
 TEXTUR = textures_randring/
+INIT = initial_all_variables/
 
 SRC = main.c \
+	  ${INIT}init_draw_struct.c \
+	  ${INIT}init_cast_struct.c \
+	  ${INIT}init_texture_struct.c \
 	  ${BRESENHAM}bresenham.c \
 	  ${BRESENHAM}bresenham_utils_fn.c \
 	  ${RENDER}cub_drawing.c \

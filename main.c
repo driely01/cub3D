@@ -6,48 +6,11 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/21 13:12:21 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:56:19 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	initial_vars(t_cub *data)
-{
-	data->draw.forward = 0;
-	data->draw.backward = 0;
-	data->draw.moveleft = 0;
-	data->draw.moveright = 0;
-	data->draw.rotleft = 0;
-	data->draw.rotright = 0;
-}
-
-void	initial_cast_vars(t_cub *data, char *str)
-{
-	data->cast.hx = 0;
-	data->cast.hy = 0;
-	data->cast.hx_offs = 0;
-	data->cast.hy_offs = 0;
-	data->cast.vx = 0;
-	data->cast.vy = 0;
-	data->cast.vx_offs = 0;
-	data->cast.vy_offs = 0;
-	data->cast.lenght = count_lines_map(str);
-	data->cast.distances = NULL;
-	data->cast.angl_inc = (M_PI / 3) / WIDTH;
-}
-
-void	initial_text(t_cub *data)
-{
-	data->text.down_add = NULL;
-	data->text.down_img = NULL;
-	data->text.left_add = NULL;
-	data->text.left_img = NULL;
-	data->text.right_add = NULL;
-	data->text.right_img = NULL;
-	data->text.up_add = NULL;
-	data->text.up_img = NULL;
-}
 
 int	main(int argc, char **argv)
 {
@@ -55,14 +18,16 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
+		initial_drawing_vars(&img);
+		initial_cast_vars(&img);
+		initial_textures(&img);
 		if (!check_file_name(argv[1]))
 			return (printf("invalid file\n"), 1);
 		fill_map_array(&img, argv[1]);
 		img.cordt.width = find_tall_line(&img) * UNIT;
 		img.cordt.height = count_lines_map(argv[1]) * UNIT;
 		img.draw.height = count_lines_map(argv[1]);
-		initial_cast_vars(&img, argv[1]);
-		initial_vars(&img);
+		img.cast.lenght = count_lines_map(argv[1]);
 		init_win_put_img(&img, 1);
 		if (!draw_mini_map(&img))
 		{
