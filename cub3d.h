@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 18:01:00 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:15:37 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define ESC 53
 
 // rotation angle
-# define ANGLE 0.039
+# define ANGLE 0.059
 # define RAY 44
 # define COEFF 20
 # define ONE 0.0174533
