@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 21:15:37 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:18:34 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,13 @@ typedef struct s_cub
 	int					border_color;
 	void				*mlx;
 	void				*mlx_win;
+	void				*fire_img;
+	char				*fire_addr;
+	int					fire_width;
+	int					fire_height;
+	int					fire_bits_per_pixel;
+	int					fire_line_lenght;
+	int					fire_endian;
 	struct s_drawing	draw;
 	struct s_cordt		cordt;
 	struct s_cast		cast;
@@ -265,7 +272,7 @@ void	allocate_distance_array(t_cub *data);
 void	vertical_ray_equation(t_cub *data);
 void	horizontal_ray_equation(t_cub *data);
 void	draw_casted_rays(t_cub *data);
-void	ray_coordinate(t_cub *data, int *i, int is_hor);
+void	ray_coordinate(t_cub *data, int *i, int r, int is_hor);
 double	distance(t_cub *data, double x2, double y2);
 double	hor_ray_casting(t_cub *data);
 double	ver_ray_casting(t_cub *data);
@@ -283,5 +290,9 @@ void	down_textures(t_cub *data, int i);
 void	right_textures(t_cub *data, int i);
 void	left_textures(t_cub *data, int i);
 void	calculate_wall_height_offset(t_cub *data, int height, int i);
+
+// animation
+void	coordinate_animation(t_cub *data, int *ptr);
+void	draw_fire_animation(t_cub *data, int r);
 
 #endif

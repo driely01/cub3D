@@ -19,6 +19,7 @@ SRC = main.c \
 	  ${RENDER}cub_drawing.c \
 	  ${RENDER}player_drawing.c \
 	  ${RENDER}draw_custom_map.c \
+	  ${RENDER}animation_sprit.c \
 	  ${RENDER}draw_after_rot_move.c \
 	  ${RENDER}ray_casting_draw.c \
 	  ${RENDER}draw_ceil_floor.c \
