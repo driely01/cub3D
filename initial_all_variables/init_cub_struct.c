@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:55:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:16:28 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:26:23 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	initial_map_struct(t_cub *data)
 	data->map.line_lenght = 0;
 	data->map.endian = 0;
 	data->map.img = 0;
-	data->map.height = HEIGHT / 6;
+	data->map.height = HEIGHT / 5;
 	data->map.width = WIDTH / 6;
 }
