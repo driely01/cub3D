@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:51:49 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/22 23:40:04 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:17:55 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 void	get_x_y(t_cub *data)
 {
-	if (data->draw.py / COEFF < 150)
+	if (data->draw.py / COEFF < data->map.height / 2)
 		data->draw.py1 = data->draw.py / COEFF;
 	else
-		data->draw.py1 = 150;
-	if (data->draw.px / COEFF < 150)
+		data->draw.py1 = data->map.height / 2;
+	if (data->draw.px / COEFF < data->map.width / 2)
 		data->draw.px1 = data->draw.px / COEFF;
 	else 
-		data->draw.px1 = 150;
-	data->draw.posx = data->draw.px / COEFF - 150;
-	data->draw.posy = data->draw.py / COEFF - 150;
-	data->draw.endx = data->draw.px / COEFF + 150;
-	data->draw.endy = data->draw.py / COEFF + 150;
+		data->draw.px1 = data->map.width / 2;
+	data->draw.posx = data->draw.px / COEFF - data->map.width / 2;
+	data->draw.posy = data->draw.py / COEFF - data->map.height / 2;
+	data->draw.endx = data->draw.px / COEFF + data->map.width / 2;
+	data->draw.endy = data->draw.py / COEFF + data->map.height / 2;
 	if (data->draw.posx < 0)
 		data->draw.posx = 0;
 	if (data->draw.posy < 0)
 		data->draw.posy = 0;
-	if (data->draw.endx < 300)
-		data->draw.endx = 300;
-	if (data->draw.endy < 300)
-		data->draw.endy = 300;
+	if (data->draw.endx < data->map.width)
+		data->draw.endx = data->map.width;
+	if (data->draw.endy < data->map.height)
+		data->draw.endy = data->map.height;
 }
 
 void	check_and_draw_map(t_cub *img, int x, int y)
@@ -43,9 +43,9 @@ void	check_and_draw_map(t_cub *img, int x, int y)
 		< ft_strlen(img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))])
 		&& img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))] \
 		[(int)(img->draw.posx / (UNIT / COEFF))] == '1')
-		put_map_pixel(img, x, y, 0x639d9f);
+		put_map_pixel(img, x, y, 0xc65a1d);
 	else
-		put_map_pixel(img, x, y, 0x046473);
+		put_map_pixel(img, x, y, 0xc89f40);
 	img->draw.posx++;
 }
 

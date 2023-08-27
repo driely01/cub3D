@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:55:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/25 19:18:10 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:05:33 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ void	check_angle(t_cub *data, int r, int choice)
 void	ray_coordinate(t_cub *data, int *i, int r, int is_hor)
 {
 	data->color = 0x0275d8;
+	(void)i;
 	if (is_hor == 1)
 	{
-		data->cast.distances[(*i)++] = hor_ray_casting(data);
+		data->cast.dist = hor_ray_casting(data);
 		data->cast.flag = 1;
 		data->cast.color = 0xee7224;
 		check_angle(data, r, 1);
 	}
 	else if (is_hor == 0)
 	{
-		data->cast.distances[(*i)++] = ver_ray_casting(data);
+		data->cast.dist = ver_ray_casting(data);
 		data->cast.color = 0xefae7e;
 		data->cast.flag = 0;
 		check_angle(data, r, 0);
@@ -53,13 +54,9 @@ void	draw_casted_rays(t_cub *data)
 {
 	int			r;
 	int			i;
-	static int	ptr;
 
 	r = -1;
 	i = 0;
-	coordinate_animation(data, &ptr);
-	ptr++;
-	allocate_distance_array(data);
 	increment_ray_angle(data, 0);
 	while (++r < WIDTH)
 	{
@@ -68,7 +65,10 @@ void	draw_casted_rays(t_cub *data)
 		else
 			ray_coordinate(data, &i, r, 0);
 		draw_ceil_floor(data, r);
-		draw_fire_animation(data, r);
+		if (data->sprit1 == 1)
+			draw_fire_animation(data, r);
+		else if (data->sprit2 == 1)
+			draw_torch_animation(data, r);
 		increment_ray_angle(data, 1);
 	}
 }

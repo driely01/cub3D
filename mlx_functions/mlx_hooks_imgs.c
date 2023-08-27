@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/25 19:21:13 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:18:29 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	destroy_init_img(t_cub *img, int choice)
 		img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 				&img->line_lenght, &img->endian);
 		mlx_destroy_image(img->mlx, img->map.img);
-		img->map.img = mlx_new_image(img->mlx, 300, 300);
+		img->map.img = mlx_new_image(img->mlx, img->map.width, img->map.height);
 		img->map.addr = mlx_get_data_addr(img->map.img,
 				&img->map.bits_per_pixel,
 				&img->map.line_lenght, &img->map.endian);
@@ -62,6 +62,14 @@ void	init_textures(t_cub *img)
 			&img->text.left_endian);
 }
 
+void	destroy_texture(t_cub *data)
+{
+	mlx_destroy_image(data->mlx, data->text.up_img);
+	mlx_destroy_image(data->mlx, data->text.down_img);
+	mlx_destroy_image(data->mlx, data->text.left_img);
+	mlx_destroy_image(data->mlx, data->text.right_img);
+}
+
 void	init_win_put_img(t_cub *img, int choice)
 {
 	if (choice == 1)
@@ -75,7 +83,6 @@ void	init_win_put_img(t_cub *img, int choice)
 		img->map.addr = mlx_get_data_addr(img->map.img,
 				&img->map.bits_per_pixel,
 				&img->map.line_lenght, &img->map.endian);
-		init_textures(img);
 	}
 	else if (choice == 2)
 	{

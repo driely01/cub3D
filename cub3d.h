@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/25 19:18:34 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:19:56 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define HEIGHT 1080
 # define WIDTH 1600
 # define UNIT 640
+# define MINI_HEIGHT 300
+# define MINI_WIDTH 300
 
 // keys
 # define KEY_W 13
@@ -41,6 +43,8 @@
 # define LEFT 123
 # define RIGHT 124
 # define ESC 53
+# define TAB 48
+# define RET 51
 
 // rotation angle
 # define ANGLE 0.059
@@ -99,23 +103,23 @@ typedef struct s_cordt
 // ray-casting
 typedef struct s_cast
 {
-	int				lenght;
-	int				color;
-	int				flag;
-	int				offset;
-	double			hx;
-	double			hy;
-	double			hx_offs;
-	double			hy_offs;
-	double			vx;
-	double			vy;
-	double			vx_offs;
-	double			vy_offs;
-	double			*distances;
-	double			ray_ang;
-	double			angl_inc;
-	double			wall_height;
-	double			step;
+	int		lenght;
+	int		color;
+	int		flag;
+	int		offset;
+	double	hx;
+	double	hy;
+	double	hx_offs;
+	double	hy_offs;
+	double	vx;
+	double	vy;
+	double	vx_offs;
+	double	vy_offs;
+	double	ray_ang;
+	double	angl_inc;
+	double	wall_height;
+	double	step;
+	double	dist;
 }	t_cast;
 
 // mini map
@@ -125,6 +129,8 @@ typedef struct s_map
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_lenght;
+	int		height;
+	int		width;
 	int		endian;
 }	t_map;
 
@@ -162,6 +168,30 @@ typedef struct s_text
 	unsigned int	*color;
 }	t_text;
 
+// fire struct
+typedef struct s_fire
+{
+	void				*fire_img;
+	char				*fire_addr;
+	int					fire_width;
+	int					fire_height;
+	int					fire_bits_per_pixel;
+	int					fire_line_lenght;
+	int					fire_endian;
+}	t_fire;
+
+// torch struct
+typedef struct s_torch
+{
+	void				*torch_img;
+	char				*torch_addr;
+	int					torch_width;
+	int					torch_height;
+	int					torch_bits_per_pixel;
+	int					torch_line_lenght;
+	int					torch_endian;
+}	t_torch;
+
 // mlx struct
 typedef struct s_cub
 {
@@ -174,24 +204,26 @@ typedef struct s_cub
 	int					border_color;
 	void				*mlx;
 	void				*mlx_win;
-	void				*fire_img;
-	char				*fire_addr;
-	int					fire_width;
-	int					fire_height;
-	int					fire_bits_per_pixel;
-	int					fire_line_lenght;
-	int					fire_endian;
+	int					sprit1;
+	int					sprit2;
 	struct s_drawing	draw;
 	struct s_cordt		cordt;
 	struct s_cast		cast;
 	struct s_map		map;
 	struct s_text		text;
+	struct s_fire		fire;
+	struct s_torch		torch;
 }	t_cub;
 
 // initial variables
+void	init_all_structrs(t_cub *data);
 void	initial_drawing_vars(t_cub *data);
 void	initial_cast_vars(t_cub *data);
 void	initial_textures(t_cub *data);
+void	initial_cub_struct(t_cub *data);
+void	initial_fire_struct(t_cub *data);
+void	initial_torch_struct(t_cub *data);
+void	initial_map_struct(t_cub *data);
 
 // drawing line algorithm
 int		ft_abs(int number);
@@ -215,6 +247,11 @@ int		key_release(int keycode, t_cub *data);
 
 // mlx mouse events
 int		mouse_move(int x, int y, t_cub *data);
+
+// mlx destroy images
+void	destroy_texture(t_cub *data);
+void	init_textures(t_cub *img);
+void	destroy_torch_and_fire(t_cub *data, int ptr);
 
 // cub && player drawing
 void	cub_draw(t_cub *data);
@@ -268,7 +305,6 @@ void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
 int		check_is_ver_wall(t_cub *data);
 int		check_is_hor_wall(t_cub *data);
 void	increment_ray_angle(t_cub *data, int is_increment);
-void	allocate_distance_array(t_cub *data);
 void	vertical_ray_equation(t_cub *data);
 void	horizontal_ray_equation(t_cub *data);
 void	draw_casted_rays(t_cub *data);
@@ -293,6 +329,8 @@ void	calculate_wall_height_offset(t_cub *data, int height, int i);
 
 // animation
 void	coordinate_animation(t_cub *data, int *ptr);
+void	coordinate_animation_torch(t_cub *data, int *ptr);
 void	draw_fire_animation(t_cub *data, int r);
+void	draw_torch_animation(t_cub *data, int r);
 
 #endif

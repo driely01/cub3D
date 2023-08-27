@@ -14,12 +14,15 @@ SRC = main.c \
 	  ${INIT}init_draw_struct.c \
 	  ${INIT}init_cast_struct.c \
 	  ${INIT}init_texture_struct.c \
+	  ${INIT}init_cub_struct.c \
+	  ${INIT}initial_all.c \
 	  ${BRESENHAM}bresenham.c \
 	  ${BRESENHAM}bresenham_utils_fn.c \
 	  ${RENDER}cub_drawing.c \
 	  ${RENDER}player_drawing.c \
 	  ${RENDER}draw_custom_map.c \
 	  ${RENDER}animation_sprit.c \
+	  ${RENDER}animation_fire.c \
 	  ${RENDER}draw_after_rot_move.c \
 	  ${RENDER}ray_casting_draw.c \
 	  ${RENDER}draw_ceil_floor.c \

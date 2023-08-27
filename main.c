@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 17:56:19 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/26 12:09:35 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		initial_drawing_vars(&img);
-		initial_cast_vars(&img);
-		initial_textures(&img);
+		init_all_structrs(&img);
 		if (!check_file_name(argv[1]))
 			return (printf("invalid file\n"), 1);
 		fill_map_array(&img, argv[1]);
