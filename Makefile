@@ -45,11 +45,11 @@ SRC = main.c \
 	  ${RCAST}coordinate_and_equations.c \
 	  ${RCAST}ray_casting.c \
 	  ${RCAST}rays_angles_distances.c \
-	  ${TEXTUR}left_texture.c \
-	  ${TEXTUR}down_texture.c \
-	  ${TEXTUR}right_texture.c \
+	  ${TEXTUR}west_texture.c \
+	  ${TEXTUR}north_texture.c \
+	  ${TEXTUR}east_texture.c \
 	  ${TEXTUR}calculate_wall_height_offset.c \
-	  ${TEXTUR}up_texture.c
+	  ${TEXTUR}south_texture.c
 
 HEADERS = cub3d.h
 

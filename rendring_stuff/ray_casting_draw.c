@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:55:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:05:33 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:57:15 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	check_angle(t_cub *data, int r, int choice)
 	if (choice == 1)
 	{
 		if (data->cast.ray_ang > 0 && data->cast.ray_ang < M_PI)
-			up_textures(data, r);
+			so_textures(data, r);
 		else
-			down_textures(data, r);
+			no_textures(data, r);
 	}
 	else if (choice == 0)
 	{
 		if (data->cast.ray_ang > M_PI / 2 && data->cast.ray_ang < 3 * M_PI / 2)
-			left_textures(data, r);
+			we_textures(data, r);
 		else
-			right_textures(data, r);
+			ea_textures(data, r);
 	}
 }
 

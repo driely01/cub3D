@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:34:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 18:39:49 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:14:28 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	mouse_rot(t_cub *data)
 	if (data->draw.rotleft == 2)
 	{
 		data->draw.pa += (-atan(data->draw.xdistance))
-			* M_PI * data->draw.rotangl * 0.001;
+			* M_PI * data->draw.rotangl * 0.0009;
 		if (data->draw.pa < 0)
 			data->draw.pa += 2 * M_PI;
 		if (data->draw.pa > 2 * M_PI)

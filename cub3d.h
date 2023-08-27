@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:19:56 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:11:59 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 // rotation angle
 # define ANGLE 0.059
-# define RAY 44
+# define RAY 50
 # define COEFF 20
 # define ONE 0.0174533
 
@@ -137,34 +137,34 @@ typedef struct s_map
 // textures
 typedef struct s_text
 {
-	void			*left_img;
-	char			*left_add;
-	int				left_width;
-	int				left_height;
-	int				left_bits_per_pixel;
-	int				left_line_lenght;
-	int				left_endian;
-	void			*right_img;
-	char			*right_add;
-	int				right_width;
-	int				right_height;
-	int				right_bits_per_pixel;
-	int				right_line_lenght;
-	int				right_endian;
-	void			*up_img;
-	char			*up_add;
-	int				up_width;
-	int				up_height;
-	int				up_bits_per_pixel;
-	int				up_line_lenght;
-	int				up_endian;
-	void			*down_img;
-	char			*down_add;
-	int				down_width;
-	int				down_height;
-	int				down_bits_per_pixel;
-	int				down_line_lenght;
-	int				down_endian;
+	void			*we_img;
+	char			*we_add;
+	int				we_width;
+	int				we_height;
+	int				we_bits_per_pixel;
+	int				we_line_lenght;
+	int				we_endian;
+	void			*ea_img;
+	char			*ea_add;
+	int				ea_width;
+	int				ea_height;
+	int				ea_bits_per_pixel;
+	int				ea_line_lenght;
+	int				ea_endian;
+	void			*so_img;
+	char			*so_add;
+	int				so_width;
+	int				so_height;
+	int				so_bits_per_pixel;
+	int				so_line_lenght;
+	int				so_endian;
+	void			*no_img;
+	char			*no_add;
+	int				no_width;
+	int				no_height;
+	int				no_bits_per_pixel;
+	int				no_line_lenght;
+	int				no_endian;
 	unsigned int	*color;
 }	t_text;
 
@@ -321,10 +321,10 @@ void	put_map_pixel(t_cub *data, int x, int y, int color);
 void	draw_custom_map(t_cub *img);
 
 // draw textures
-void	up_textures(t_cub *data, int i);
-void	down_textures(t_cub *data, int i);
-void	right_textures(t_cub *data, int i);
-void	left_textures(t_cub *data, int i);
+void	so_textures(t_cub *data, int i);
+void	no_textures(t_cub *data, int i);
+void	ea_textures(t_cub *data, int i);
+void	we_textures(t_cub *data, int i);
 void	calculate_wall_height_offset(t_cub *data, int height, int i);
 
 // animation

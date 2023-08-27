@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:18:29 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:57:47 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,38 +36,38 @@ void	destroy_init_img(t_cub *img, int choice)
 
 void	init_textures(t_cub *img)
 {
-	img->text.up_img = mlx_xpm_file_to_image(img->mlx,
+	img->text.so_img = mlx_xpm_file_to_image(img->mlx,
 			"textures/li/eg1.xpm",
-			&img->text.up_width, &img->text.up_height);
-	img->text.down_img = mlx_xpm_file_to_image(img->mlx,
+			&img->text.so_width, &img->text.so_height);
+	img->text.no_img = mlx_xpm_file_to_image(img->mlx,
 			"textures/li/eg4.xpm",
-			&img->text.down_width, &img->text.down_height);
-	img->text.right_img = mlx_xpm_file_to_image(img->mlx,
+			&img->text.no_width, &img->text.no_height);
+	img->text.ea_img = mlx_xpm_file_to_image(img->mlx,
 			"textures/li/eg6.xpm",
-			&img->text.right_width, &img->text.right_height);
-	img->text.left_img = mlx_xpm_file_to_image(img->mlx,
+			&img->text.ea_width, &img->text.ea_height);
+	img->text.we_img = mlx_xpm_file_to_image(img->mlx,
 			"textures/li/eg5.xpm",
-			&img->text.left_width, &img->text.left_height);
-	img->text.up_add = mlx_get_data_addr(img->text.up_img,
-			&img->text.up_bits_per_pixel, &img->text.up_line_lenght,
-			&img->text.up_endian);
-	img->text.down_add = mlx_get_data_addr(img->text.down_img,
-			&img->text.down_bits_per_pixel, &img->text.down_line_lenght,
-			&img->text.down_endian);
-	img->text.right_add = mlx_get_data_addr(img->text.right_img,
-			&img->text.right_bits_per_pixel, &img->text.right_line_lenght,
-			&img->text.right_endian);
-	img->text.left_add = mlx_get_data_addr(img->text.left_img,
-			&img->text.left_bits_per_pixel, &img->text.left_line_lenght,
-			&img->text.left_endian);
+			&img->text.we_width, &img->text.we_height);
+	img->text.so_add = mlx_get_data_addr(img->text.so_img,
+			&img->text.so_bits_per_pixel, &img->text.so_line_lenght,
+			&img->text.so_endian);
+	img->text.no_add = mlx_get_data_addr(img->text.no_img,
+			&img->text.no_bits_per_pixel, &img->text.no_line_lenght,
+			&img->text.no_endian);
+	img->text.ea_add = mlx_get_data_addr(img->text.ea_img,
+			&img->text.ea_bits_per_pixel, &img->text.ea_line_lenght,
+			&img->text.ea_endian);
+	img->text.we_add = mlx_get_data_addr(img->text.we_img,
+			&img->text.we_bits_per_pixel, &img->text.we_line_lenght,
+			&img->text.we_endian);
 }
 
 void	destroy_texture(t_cub *data)
 {
-	mlx_destroy_image(data->mlx, data->text.up_img);
-	mlx_destroy_image(data->mlx, data->text.down_img);
-	mlx_destroy_image(data->mlx, data->text.left_img);
-	mlx_destroy_image(data->mlx, data->text.right_img);
+	mlx_destroy_image(data->mlx, data->text.so_img);
+	mlx_destroy_image(data->mlx, data->text.no_img);
+	mlx_destroy_image(data->mlx, data->text.we_img);
+	mlx_destroy_image(data->mlx, data->text.ea_img);
 }
 
 void	init_win_put_img(t_cub *img, int choice)
