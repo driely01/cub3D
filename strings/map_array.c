@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:25:00 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/12 19:01:20 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/28 03:13:21 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ int	fill_map_array(t_cub *img, char *file_name)
 
 	map_lenght = count_lines_map(file_name);
 	if (map_lenght > 0)
+	{
 		img->draw.line = malloc(sizeof(char *) * (map_lenght + 1));
-	if (!img->draw.line)
-		return (0);
+		if (!img->draw.line)
+			print_error_malloc();
+	}
+	else
+		print_error_map_empty();
 	fd = open(file_name, O_RDONLY, 0777);
 	if (fd == -1)
 		return (0);

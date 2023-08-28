@@ -27,6 +27,7 @@ SRC = main.c \
 	  ${STRINGS}get_next_line.c \
 	  ${STRINGS}ft_strdup.c \
 	  ${STRINGS}ft_split.c \
+	  ${STRINGS}check_map.c \
 	  ${STRINGS}ft_free.c \
 	  ${STRINGS}ft_atoi.c \
 	  ${STRINGS}ft_strjoin.c \

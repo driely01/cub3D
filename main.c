@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/28 00:52:06 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 02:02:00 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	parsing(char **argv, t_cub *img)
 		write(2, "invalid path of texture\n", 24);
 		exit(1);
 	}
+	check_map(argv[1], img);
 }
 
 int	main(int argc, char **argv)
@@ -38,7 +39,6 @@ int	main(int argc, char **argv)
 		initial_cast_vars(&img);
 		initial_textures(&img);
 		parsing(argv, &img);
-		fill_map_array(&img, argv[1]);
 		img.cordt.width = find_tall_line(&img) * UNIT;
 		img.cordt.height = count_lines_map(argv[1]) * UNIT;
 		img.draw.height = count_lines_map(argv[1]);

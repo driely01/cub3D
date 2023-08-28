@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 04:44:24 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/28 00:59:15 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 01:10:59 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char	*get_color_hex(char *color)
 	int		color_int;
 	int		i;
 	char	*color_hex;
+	char	*tmp;
 
 	str = ft_split(color, ',');
 	i = 0;
@@ -145,7 +146,9 @@ char	*get_color_hex(char *color)
 	while (str[i])
 	{
 		color_int = atoi(str[i]);
-		color_hex = ft_strjoin(color_hex, ft_puthex(color_int));
+		tmp = ft_puthex(color_int);
+		color_hex = ft_strjoin(color_hex, tmp);
+		free(tmp);
 		i++;
 	}
 	free_double(str);
@@ -154,8 +157,14 @@ char	*get_color_hex(char *color)
 
 void	get_color_in_decimal(t_cub *data)
 {
-	data->f_color = hex_to_decimal(get_color_hex(data->f));
-	data->c_color = hex_to_decimal(get_color_hex(data->c));
+	char	*tmp;
+	
+	tmp = get_color_hex(data->f);
+	data->f_color = hex_to_decimal(tmp);
+	free(tmp);
+	tmp = get_color_hex(data->c);
+	data->c_color = hex_to_decimal(tmp);
+	free(tmp);
 }
 
 int	check_color_is_valid(t_cub *data)

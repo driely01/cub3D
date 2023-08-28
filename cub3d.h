@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/28 00:38:41 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 03:12:59 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ int		check_path_of_text(t_cub *data);
 int		get_paths(int fd, t_cub *data);
 int		check_type_identifier(char **str, t_cub *data);
 int		check_type_identifier_next(char **str, t_cub *data);
+void	check_map(char	*str, t_cub *data);
 // char	**ft_strjoin_double(char **str1, char **str2);
 
 // map array
@@ -334,5 +335,8 @@ void	free_double(char **str);
 // error_msg
 void	print_error_fd(void);
 void	print_error_malloc(void);
+void	print_error_caracter(t_cub *data);
+void	print_error_border(t_cub *data);
+void	print_error_map_empty(void);
 
 #endif
