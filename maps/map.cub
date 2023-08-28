@@ -1,16 +1,20 @@
-NO    ./textures/li/eg1.xpm
+NO           ./textures/li/eg1.xpm
 
-WE    ./textures/li/eg6.xpm
-
-SO    ./textures/li/eg4.xpm
+WE      ./textures/li/eg6.xpm
 
 
-F    220  , 100   ,  0
 
 
-EA    ./textures/li/eg5.xpm
+SO                                ./textures/li/eg4.xpm
 
-C  225   ,  30   ,   0
+
+
+
+
+EA ./textures/li/eg5.xpm
+
+F    46,45,26
+C  36,26,46   
 
 
                                                                                           111

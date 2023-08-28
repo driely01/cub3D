@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 00:46:02 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/26 01:32:03 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/27 17:51:58 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,33 @@ char	**ft_split(char const *s, char c)
 	}
 	str[i] = NULL;
 	return (str);
+}
+char	**ft_split_two_part(char *line)
+{
+	char	**str;
+	int		start;
+	int		end;
+
+	str = (char **)malloc(sizeof(char *) * 3);
+	if (!str)
+		print_error_malloc();
+	str[0] = get_first_part(line, &start, &end);
+	str[1] = get_second_part(line, &start, &end);
+	str[2] = NULL;
+	return (str);
+}
+int	check_line_is_empty(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line && line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\n')
+			return (0);
+		i++;
+	}
+	if (i == 0)
+		return (0);
+	return (1);
 }

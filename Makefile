@@ -36,6 +36,8 @@ SRC = main.c \
 	  ${STRINGS}ft_strncmp.c \
 	  ${STRINGS}find_tall_line_count_lines.c \
 	  ${STRINGS}find_start_map.c \
+	  ${STRINGS}check_texture.c \
+	  ${STRINGS}check_color.c \
 	  ${MLX}put_pixel.c \
 	  ${MLX}key_events.c \
 	  ${MLX}mouse_events.c \
@@ -57,7 +59,7 @@ HEADERS = cub3d.h
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 CC = cc
 RM = rm -f
 

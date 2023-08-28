@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/26 02:59:12 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 00:38:41 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ typedef struct s_cub
 	char				*ea;
 	char				*f;
 	char				*c;
+	int					f_color;
+	int					c_color;
 	void				*img;
 	char				*addr;
 	int					bits_per_pixel;
@@ -244,6 +246,22 @@ int		ft_strcmp(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
+char	*get_color(char **str);
+int		check_color(char **str);
+int		check_color_is_valid(t_cub *data);
+char	**ft_split_two_part(char *line);
+int		check_line_is_empty(char *line);
+int		check_if_dote_cub(char *str, int start, int end);
+int		check_file_name(char *str);
+char	*delete_spaces_first_last(char *str);
+char	*get_second_part(char *line, int *start, int *end);
+char	*get_first_part(char *line, int *start, int *end);
+int		check_texture(char	*str, t_cub *data);
+int		check_path_of_text(t_cub *data);
+int		get_paths(int fd, t_cub *data);
+int		check_type_identifier(char **str, t_cub *data);
+int		check_type_identifier_next(char **str, t_cub *data);
+// char	**ft_strjoin_double(char **str1, char **str2);
 
 // map array
 int		fill_map_array(t_cub *img, char *file_name);
@@ -306,8 +324,8 @@ void	coordinate_animation(t_cub *data, int *ptr);
 void	draw_fire_animation(t_cub *data, int r);
 
 //parsing
-int	check_texture(char	*str, t_cub *data);
-int	check_line_is_empty(char *line);
+int		check_texture(char	*str, t_cub *data);
+int		check_line_is_empty(char *line);
 
 // free
 void	free_texture(t_cub *data);
