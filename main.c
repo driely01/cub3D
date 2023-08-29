@@ -6,35 +6,27 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/18 22:07:27 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:13:42 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	initial_vars(t_cub *data)
+void	parsing(char **argv, t_cub *img)
 {
-	data->draw.forward = 0;
-	data->draw.backward = 0;
-	data->draw.moveleft = 0;
-	data->draw.moveright = 0;
-	data->draw.rotleft = 0;
-	data->draw.rotright = 0;
-}
-
-void	initial_cast_vars(t_cub *data, char *str)
-{
-	data->cast.hx = 0;
-	data->cast.hy = 0;
-	data->cast.hx_offs = 0;
-	data->cast.hy_offs = 0;
-	data->cast.vx = 0;
-	data->cast.vy = 0;
-	data->cast.vx_offs = 0;
-	data->cast.vy_offs = 0;
-	data->cast.lenght = count_lines_map(str);
-	data->cast.distances = NULL;
-	data->cast.angl_inc = (M_PI / 3) / WIDTH;
+	if (!check_file_name(argv[1]))
+	{
+		write(2, "Error\n", 6);
+		write(2, "invalid file\n", 13);
+		exit (1);
+	}
+	if (!check_texture(argv[1], img))
+	{
+		write(2, "Error\n", 6);
+		write(2, "invalid path of texture\n", 24);
+		exit(1);
+	}
+	check_map(argv[1], img);
 }
 
 int	main(int argc, char **argv)
@@ -43,20 +35,14 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		if (!check_file_name(argv[1]))
-			return (printf("invalid file\n"), 1);
-		fill_map_array(&img, argv[1]);
+		init_all_structrs(&img);
+		parsing(argv, &img);
 		img.cordt.width = find_tall_line(&img) * UNIT;
 		img.cordt.height = count_lines_map(argv[1]) * UNIT;
 		img.draw.height = count_lines_map(argv[1]);
-		initial_cast_vars(&img, argv[1]);
-		initial_vars(&img);
+		img.cast.lenght = count_lines_map(argv[1]);
 		init_win_put_img(&img, 1);
-		if (!draw_mini_map(&img))
-		{
-			printf("there is no map\n");
-			return (1);
-		}
+		draw_mini_map(&img);
 		init_win_put_img(&img, 2);
 	}
 	else

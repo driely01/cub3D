@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:26:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/13 17:40:21 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:14:02 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	initial_player_coordinate(t_cub *img)
 	img->draw.pr = 6;
 	img->draw.py = img->draw.y1 + (UNIT / 2);
 	img->draw.px = img->draw.x1 + (UNIT / 2);
-	img->draw.pdx = cos(img->draw.pa) * 1.5;
-	img->draw.pdy = sin(img->draw.pa) * 1.5;
+	img->draw.pdx = cos(img->draw.pa) * RAY;
+	img->draw.pdy = sin(img->draw.pa) * RAY;
 }
 
 void	initail_and_fill(t_cub *img, int i, int j)
@@ -49,21 +49,38 @@ void	initail_and_fill(t_cub *img, int i, int j)
 	}
 }
 
-int	draw_mini_map(t_cub *img)
+// int	draw_mini_map(t_cub *img)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	if (!img->draw.line)
+// 		return (0);
+// 	while (img->draw.line[i] && img->draw.line[i][j])
+// 	{
+// 		while (img->draw.line[i] && img->draw.line[i][j])
+// 			initail_and_fill(img, i, j++);
+// 		j = 0;
+// 		i++;
+// 	}
+// 	return (1);
+// }
+void	draw_mini_map(t_cub *img)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
-	if (!img->draw.line)
-		return (0);
-	while (img->draw.line[i] && img->draw.line[i][j])
+	while (img->draw.line[i])
 	{
-		while (img->draw.line[i] && img->draw.line[i][j])
-			initail_and_fill(img, i, j++);
 		j = 0;
+		while (img->draw.line[i][j])
+		{
+			initail_and_fill(img, i, j);
+			j++;
+		}
 		i++;
 	}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:01:38 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/19 19:28:11 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/23 18:34:56 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	move_left_and_check(t_cub *data)
 	{
 		if (data->draw.forward || data->draw.backward)
 		{
-			data->draw.px += sin(M_PI - data->draw.pa);
-			data->draw.py += cos(M_PI - data->draw.pa);
+			data->draw.px += sin(M_PI - data->draw.pa) * RAY / 2;
+			data->draw.py += cos(M_PI - data->draw.pa) * RAY / 2;
 		}
 		else
 		{
@@ -65,8 +65,8 @@ void	move_right_end_check(t_cub *data)
 	{
 		if (data->draw.forward || data->draw.backward)
 		{
-			data->draw.px -= sin(M_PI - data->draw.pa);
-			data->draw.py -= cos(M_PI - data->draw.pa);
+			data->draw.px -= sin(M_PI - data->draw.pa) * RAY / 2;
+			data->draw.py -= cos(M_PI - data->draw.pa) * RAY / 2;
 		}
 		else
 		{

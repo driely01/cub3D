@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:34:43 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/19 19:28:05 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:14:28 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	move_backward(t_cub *data)
 	double	prevpx;
 	double	prevpy;
 
-	prevpx = data->draw.px - data->draw.pdx;
-	prevpy = data->draw.py - data->draw.pdy;
+	prevpx = data->draw.px - data->draw.pdx * 6;
+	prevpy = data->draw.py - data->draw.pdy * 6;
 	if (data->draw.backward == 1)
 	{
 		if (data->draw.line[(int)floor(prevpy / UNIT)] \
@@ -45,8 +45,8 @@ void	straight_move(t_cub *data)
 	double	nextpx;
 	double	nextpy;
 
-	nextpx = data->draw.px + data->draw.pdx;
-	nextpy = data->draw.py + data->draw.pdy;
+	nextpx = data->draw.px + data->draw.pdx * 6;
+	nextpy = data->draw.py + data->draw.pdy * 6;
 	if (data->draw.forward == 1)
 	{
 		if (data->draw.line[(int)floor(nextpy / UNIT)] \
@@ -73,9 +73,12 @@ void	mouse_rot(t_cub *data)
 {
 	if (data->draw.rotleft == 2)
 	{
-		data->draw.pa += (WIDTH / pow(WIDTH, 1.7)) * data->draw.rotangl;
+		data->draw.pa += (-atan(data->draw.xdistance))
+			* M_PI * data->draw.rotangl * 0.0009;
 		if (data->draw.pa < 0)
 			data->draw.pa += 2 * M_PI;
+		if (data->draw.pa > 2 * M_PI)
+			data->draw.pa -= 2 * M_PI;
 		data->draw.pdx = cos(data->draw.pa) * RAY;
 		data->draw.pdy = sin(data->draw.pa) * RAY;
 		data->draw.rotleft = 0;
