@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_tall_line_count_lines.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 13:53:23 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/12 18:59:59 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:01:29 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	count_lines_map(char *file_name)
 	fd = open(file_name, O_RDONLY, 0777);
 	if (fd == -1)
 		return (i);
+	find_map(fd);
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (find_map_start(line))
-			i++;
+		i++;
 		free(line);
 		line = get_next_line(fd);
 	}

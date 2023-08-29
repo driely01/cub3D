@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 00:46:02 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/27 17:51:58 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:37:26 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,9 @@ int	check_line_is_empty(char *line)
 	i = 0;
 	while (line && line[i])
 	{
-		if (line[i] != ' ' && line[i] != '\n')
+		if (line[i] != '\n')
 			return (0);
 		i++;
 	}
-	if (i == 0)
-		return (0);
 	return (1);
 }

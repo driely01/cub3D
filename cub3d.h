@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/28 03:12:59 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:50:55 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,9 @@ typedef struct s_text
 // mlx struct
 typedef struct s_cub
 {
+	int					wall;
+	int					floor;
+	int					player;
 	char				*no;
 	char				*so;
 	char				*we;
@@ -262,6 +265,7 @@ int		get_paths(int fd, t_cub *data);
 int		check_type_identifier(char **str, t_cub *data);
 int		check_type_identifier_next(char **str, t_cub *data);
 void	check_map(char	*str, t_cub *data);
+int		find_map(int fd);
 // char	**ft_strjoin_double(char **str1, char **str2);
 
 // map array
@@ -272,7 +276,7 @@ int		find_map_start(char *line);
 
 // drawing mini map
 void	initail_and_fill(t_cub *img, int i, int j);
-int		draw_mini_map(t_cub *img);
+void	draw_mini_map(t_cub *img);
 void	initial_player_coordinate(t_cub *img);
 void	initail_and_fill(t_cub *img, int i, int j);
 

@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:25:00 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/28 03:13:21 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:13:37 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	fill_the_array_map(t_cub *img, int fd)
 	char	*line;
 
 	i = 0;
+	find_map(fd);
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (find_map_start(line))
-			img->draw.line[i++] = ft_strdup(line);
+		img->draw.line[i++] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
 	}

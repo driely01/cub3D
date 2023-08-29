@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:51:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 03:43:23 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:52:58 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ void	initial_drawing_vars(t_cub *data)
 	data->draw.rotright = 0;
 	data->draw.height = 0;
 	data->draw.posx = 0;
+	data->wall = 0;
+	data->floor = 0;
+	data->player = 0;
 	init_drawing(data);
 }
