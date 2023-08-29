@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:57:47 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:13:15 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void	destroy_init_img(t_cub *img, int choice)
 void	init_textures(t_cub *img)
 {
 	img->text.so_img = mlx_xpm_file_to_image(img->mlx,
-			"textures/li/eg1.xpm",
+			img->text.so,
 			&img->text.so_width, &img->text.so_height);
 	img->text.no_img = mlx_xpm_file_to_image(img->mlx,
-			"textures/li/eg4.xpm",
+			img->text.no,
 			&img->text.no_width, &img->text.no_height);
 	img->text.ea_img = mlx_xpm_file_to_image(img->mlx,
-			"textures/li/eg6.xpm",
+			img->text.ea,
 			&img->text.ea_width, &img->text.ea_height);
 	img->text.we_img = mlx_xpm_file_to_image(img->mlx,
-			"textures/li/eg5.xpm",
+			img->text.we,
 			&img->text.we_width, &img->text.we_height);
 	img->text.so_add = mlx_get_data_addr(img->text.so_img,
 			&img->text.so_bits_per_pixel, &img->text.so_line_lenght,

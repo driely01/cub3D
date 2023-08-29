@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 15:25:48 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:38:40 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 // rotation angle
 # define ANGLE 0.059
-# define RAY 50
+# define RAY 60
 # define COEFF 20
 # define ONE 0.0174533
 
@@ -137,6 +137,14 @@ typedef struct s_map
 // textures
 typedef struct s_text
 {
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	char			*f;
+	char			*c;
+	int				f_color;
+	int				c_color;
 	void			*we_img;
 	char			*we_add;
 	int				we_width;
@@ -195,6 +203,7 @@ typedef struct s_torch
 // mlx struct
 typedef struct s_cub
 {
+	int					player;
 	void				*img;
 	char				*addr;
 	int					bits_per_pixel;
@@ -271,6 +280,14 @@ int		ft_strlen(const char *str);
 // strings
 char	*ft_strdup(char *str);
 int		ft_strncmp(char *s1, char *s2, size_t n);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
+char	**ft_split(char const *s, char c);
+int		ft_atoi(const char *str);
+char	**ft_split_two_part(char *line);
+char	*delete_spaces_first_last(char *str);
+char	*get_second_part(char *line, int *start, int *end);
+char	*get_first_part(char *line, int *start, int *end);
 
 // map array
 int		fill_map_array(t_cub *img, char *file_name);
@@ -280,7 +297,7 @@ int		find_map_start(char *line);
 
 // drawing mini map
 void	initail_and_fill(t_cub *img, int i, int j);
-int		draw_mini_map(t_cub *img);
+void	draw_mini_map(t_cub *img);
 void	initial_player_coordinate(t_cub *img);
 void	initail_and_fill(t_cub *img, int i, int j);
 
@@ -332,5 +349,54 @@ void	coordinate_animation(t_cub *data, int *ptr);
 void	coordinate_animation_torch(t_cub *data, int *ptr);
 void	draw_fire_animation(t_cub *data, int r);
 void	draw_torch_animation(t_cub *data, int r);
+
+//parsing
+int		check_line_is_empty(char *line);
+
+// parsing textures
+int		check_texture(char	*str, t_cub *data);
+int		check_path_of_text(t_cub *data);
+int		check_type(char	*line, t_cub *data, int fd);
+
+// parsing textures utils
+int		get_paths(int fd, t_cub *data);
+int		check_type_identifier(char **str, t_cub *data);
+int		check_type_identifier_next(char **str, t_cub *data);
+
+// parsing colors
+char	*get_color(char **str);
+int		check_color(char **str);
+char	*ft_strjoin_one_char(char c, char *str);
+int		check_color_is_valid(t_cub *data);
+
+// parsing base conversion
+char	*ft_puthex(int num);
+int		hex_to_decimal(char *str);
+char	*get_color_hex(char *color);
+void	get_color_in_decimal(t_cub *data);
+
+// parsing map
+void	check_map(char	*str, t_cub *data);
+int		check_line(char *line, t_cub *data);
+int		check_border(char c, int i, int j, t_cub *data);
+int		check_caracter_is_valid(char c, t_cub *data);
+int		find_map(int fd);
+
+// parsing map utils
+void	check_map_is_empty(t_cub *data, int *i);
+int		check_end_of_map(t_cub *data, int *i);
+void	check_all_caracters(t_cub *data);
+int		check_border_map(t_cub *data);
+
+// free
+void	free_texture(t_cub *data);
+void	free_double(char **str);
+
+// error_msg
+void	print_error_fd(void);
+void	print_error_malloc(void);
+void	print_error_caracter(t_cub *data);
+void	print_error_border(t_cub *data);
+void	print_error_map_empty(void);
 
 #endif

@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_ceil_floor.c                                  :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 22:18:32 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/29 14:44:45 by del-yaag         ###   ########.fr       */
+/*   Created: 2023/08/26 01:30:46 by amoukhle          #+#    #+#             */
+/*   Updated: 2023/08/29 14:48:07 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	draw_ceil_floor(t_cub *data, int i)
+void	free_texture(t_cub *data)
 {
-	int		j;
-	double	wall_height;
+	if (data->text.no)
+		free(data->text.no);
+	if (data->text.so)
+		free(data->text.so);
+	if (data->text.we)
+		free(data->text.we);
+	if (data->text.ea)
+		free(data->text.ea);
+	if (data->text.f)
+		free(data->text.f);
+	if (data->text.c)
+		free(data->text.c);
+}
 
-	wall_height = UNIT / (data->cast.dist
-			* cos(fabs(data->draw.pa - data->cast.ray_ang))) * HEIGHT;
-	j = 0;
-	while (j < HEIGHT)
+void	free_double(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (j < ((HEIGHT / 2) - (wall_height / 2)))
-			my_put_pixel(data, i, j, data->text.c_color);
-		else if (j - ((HEIGHT / 2) - (wall_height / 2)) > wall_height)
-			my_put_pixel(data, i, j, data->text.f_color);
-		j++;
+		free(str[i]);
+		i++;
 	}
+	free(str);
 }

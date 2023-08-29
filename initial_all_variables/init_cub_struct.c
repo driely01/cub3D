@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:55:52 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 15:26:23 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:26:58 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initial_cub_struct(t_cub *data)
 	data->mlx_win = NULL;
 	data->sprit1 = 1;
 	data->sprit2 = 0;
+	data->player = 0;
 }
 
 void	initial_fire_struct(t_cub *data)
