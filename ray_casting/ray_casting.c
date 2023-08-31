@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:30:05 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/24 15:23:13 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:18:37 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	check_is_hor_wall(t_cub *data)
 
 double	ver_ray_casting(t_cub *data)
 {
+	data->cast.d_vx = 0;
+	data->cast.d_vy = 0;
 	vertical_ray_equation(data);
 	while (data->cast.vx > 0 && data->cast.vy > 0
 		&& data->cast.vy < data->cordt.height
@@ -85,6 +87,12 @@ double	ver_ray_casting(t_cub *data)
 			&& data->draw.line[(int)(data->cast.vy / UNIT)] \
 			[(int)(data->cast.vx / UNIT)] != 0)
 		{
+			if (data->draw.line[(int)(data->cast.vy / UNIT)][(int)(data->cast.vx / UNIT)] == 'D' && data->cast.d_vx == 0)
+			{
+				data->cast.d_vx = data->cast.vx;
+				data->cast.d_vy = data->cast.vy;
+				data->cast.d_v_dist = distance(data, data->cast.d_vx, data->cast.d_vy);
+			}
 			if (!check_is_ver_wall(data))
 				break ;
 		}
@@ -94,8 +102,11 @@ double	ver_ray_casting(t_cub *data)
 	return (distance(data, data->cast.vx, data->cast.vy));
 }
 
-double	hor_ray_casting(t_cub *data)
+double	 hor_ray_casting(t_cub *data)
 {
+	
+	data->cast.d_hx = 0;
+	data->cast.d_hx = 0;
 	horizontal_ray_equation(data);
 	while (data->cast.hx >= 0 && data->cast.hy >= 0
 		&& data->cast.hy < data->cordt.height
@@ -111,6 +122,12 @@ double	hor_ray_casting(t_cub *data)
 			&& data->draw.line[(int)(data->cast.hy / UNIT)] \
 			[(int)(data->cast.hx / UNIT)] != 0)
 		{
+			if (data->draw.line[(int)(data->cast.hy / UNIT)][(int)(data->cast.hx / UNIT)] == 'D' && data->cast.d_hx == 0)
+			{
+				data->cast.d_hx = data->cast.hx;
+				data->cast.d_hy = data->cast.hy;
+				data->cast.d_h_dist = distance(data, data->cast.d_hx, data->cast.d_hy);
+			}
 			if (!check_is_hor_wall(data))
 				break ;
 		}

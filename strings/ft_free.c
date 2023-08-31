@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:30:46 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/26 02:39:03 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:48:07 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	free_texture(t_cub *data)
 {
-	if (data->no)
-		free(data->no);
-	if (data->so)
-		free(data->so);
-	if (data->we)
-		free(data->we);
-	if (data->ea)
-		free(data->ea);
-	if (data->f)
-		free(data->f);
-	if (data->c)
-		free(data->c);
+	if (data->text.no)
+		free(data->text.no);
+	if (data->text.so)
+		free(data->text.so);
+	if (data->text.we)
+		free(data->text.we);
+	if (data->text.ea)
+		free(data->text.ea);
+	if (data->text.f)
+		free(data->text.f);
+	if (data->text.c)
+		free(data->text.c);
 }
 
 void	free_double(char **str)

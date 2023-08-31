@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_left_and_right.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:01:38 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 18:34:56 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/31 02:49:48 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ void	move_left_and_check(t_cub *data)
 	{
 		if (data->draw.forward || data->draw.backward)
 		{
-			data->draw.px += sin(M_PI - data->draw.pa) * RAY / 2;
-			data->draw.py += cos(M_PI - data->draw.pa) * RAY / 2;
+			if (check_door(data, nextpx, nextpy))
+			{
+				data->draw.px += sin(M_PI - data->draw.pa) * RAY / 2;
+				data->draw.py += cos(M_PI - data->draw.pa) * RAY / 2;
+			}
 		}
 		else
 		{
-			data->draw.px += sin(M_PI - data->draw.pa) * RAY;
-			data->draw.py += cos(M_PI - data->draw.pa) * RAY;
+			if (check_door(data, nextpx, nextpy))
+			{
+				data->draw.px += sin(M_PI - data->draw.pa) * RAY;
+				data->draw.py += cos(M_PI - data->draw.pa) * RAY;
+			}
 		}
 	}
 	else
@@ -65,13 +71,19 @@ void	move_right_end_check(t_cub *data)
 	{
 		if (data->draw.forward || data->draw.backward)
 		{
-			data->draw.px -= sin(M_PI - data->draw.pa) * RAY / 2;
-			data->draw.py -= cos(M_PI - data->draw.pa) * RAY / 2;
+			if (check_door(data, prevpx, prevpy))
+			{
+				data->draw.px -= sin(M_PI - data->draw.pa) * RAY / 2;
+				data->draw.py -= cos(M_PI - data->draw.pa) * RAY / 2;
+			}
 		}
 		else
 		{
-			data->draw.px -= sin(M_PI - data->draw.pa) * RAY;
-			data->draw.py -= cos(M_PI - data->draw.pa) * RAY;
+			if (check_door(data, prevpx, prevpy))
+			{
+				data->draw.px -= sin(M_PI - data->draw.pa) * RAY;
+				data->draw.py -= cos(M_PI - data->draw.pa) * RAY;
+			}
 		}
 	}
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 00:46:02 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/28 19:37:26 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:07:57 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	**ft_split(char const *s, char c)
 	str[i] = NULL;
 	return (str);
 }
+
 char	**ft_split_two_part(char *line)
 {
 	char	**str;
@@ -97,6 +98,7 @@ char	**ft_split_two_part(char *line)
 	str[2] = NULL;
 	return (str);
 }
+
 int	check_line_is_empty(char *line)
 {
 	int	i;

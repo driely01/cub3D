@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:56:19 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/28 00:20:28 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:08:51 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	return (str);
 }
-
-// char	**ft_strjoin_double(char **str1, char **str2)
-// {
-// 	int		len;
-// 	int		i;
-// 	int		j;
-// 	char	**str;
-
-// 	len = 0;
-// 	i = 0;
-// 	while (str1[i])
-// 		i++;
-// 	len += i;
-// 	i = 0;
-// 	while (str2[i])
-// 		i++;
-// 	len += i;
-// 	str = (char **)malloc(sizeof(char *) * (len + 1));
-// 	if (!str)
-// 		print_error_malloc();
-// 	i = 0;
-// 	while (str1[i])
-// 	{
-// 		str[i] = str1[i];
-// 		i++;
-// 	}
-// 	j = 0;
-// 	while (str2[j])
-// 		str[i++] = str2[j++];
-// 	str[i] = NULL;
-// 	return (str);
-// }

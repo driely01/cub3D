@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   down_texture.c                                     :+:      :+:    :+:   */
+/*   north_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:09:46 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/23 11:39:30 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:29:29 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	down_textures_up_down(t_cub *data, double next_px, int choice)
+void	no_textures_up_no(t_cub *data, double next_px, int choice)
 {
 	if (choice == 1)
 	{
-		data->text.color = (unsigned int *)data->text.down_add + \
-				(data->text.down_width * (data->text.down_height / 2)
-				+ ((data->cast.offset * data->text.down_width) / UNIT))
-			- (data->text.down_width * (int)next_px);
+		data->text.color = (unsigned int *)data->text.no_add + \
+				(data->text.no_width * (data->text.no_height / 2)
+				+ ((data->cast.offset * data->text.no_width) / UNIT))
+			- (data->text.no_width * (int)next_px);
 	}
 	else if (choice == 0)
 	{
-		data->text.color = (unsigned int *)data->text.down_add + \
-				(data->text.down_width * (data->text.down_height / 2)
-				+ ((data->cast.offset * data->text.down_width) / UNIT))
-			+ (data->text.down_width * (int)next_px);
+		data->text.color = (unsigned int *)data->text.no_add + \
+				(data->text.no_width * (data->text.no_height / 2)
+				+ ((data->cast.offset * data->text.no_width) / UNIT))
+			+ (data->text.no_width * (int)next_px);
 	}
 }
 
-void	down_textures(t_cub *data, int i)
+void	no_textures(t_cub *data, int i)
 {
 	int		j;
 	double	next_px;
 
-	calculate_wall_height_offset(data, data->text.down_height, i);
+	calculate_wall_height_offset(data, data->text.no_height, i);
 	next_px = 0;
 	j = HEIGHT / 2;
 	while (j > (HEIGHT / 2) - (data->cast.wall_height / 2))
 	{
-		down_textures_up_down(data, next_px, 1);
+		no_textures_up_no(data, next_px, 1);
 		my_put_pixel(data, i, j, *data->text.color);
 		next_px += data->cast.step;
 		j--;
@@ -49,9 +49,10 @@ void	down_textures(t_cub *data, int i)
 	next_px = 0;
 	while (j < (HEIGHT / 2) + (data->cast.wall_height / 2))
 	{
-		down_textures_up_down(data, next_px, 0);
+		no_textures_up_no(data, next_px, 0);
 		my_put_pixel(data, i, j, *data->text.color);
 		next_px += data->cast.step;
 		j++;
 	}
+	draw_ceil_floor(data, i);
 }

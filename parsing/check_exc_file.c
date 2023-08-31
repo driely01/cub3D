@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_exc_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:07:26 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 04:44:04 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:10:38 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,3 @@ char	*get_second_part(char *line, int *start, int *end)
 	str[i] = '\0';
 	return (str);
 }
-
-
-
-
-
-
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 04:44:24 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/28 01:10:59 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:16:52 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*get_color(char **str)
 	free_double(colors);
 	return (color);
 }
+
 int	check_color(char **str)
 {
 	int	i;
@@ -63,6 +64,7 @@ int	check_color(char **str)
 	free_double(str);
 	return (1);
 }
+
 char	*ft_strjoin_one_char(char c, char *str)
 {
 	int		len;
@@ -88,96 +90,18 @@ char	*ft_strjoin_one_char(char c, char *str)
 	return (new_str);
 }
 
-char	*ft_puthex(int num)
-{
-	char	*str;
-	char	*hex;
-	char	c;
-
-	hex = NULL;
-	str = "0123456789abcdef";
-	if (num >= 16)
-		hex = ft_puthex(num / 16);
-	c = str[num % 16];
-	hex = ft_strjoin_one_char(c, hex);
-	return (hex);
-}
-
-int	hex_to_decimal(char *str)
-{
-	int number;
-	int i;
-	int ex;
-
-	i = -1;
-	ex = 6;
-	number = 0;
-	while (str[++i])
-	{
-		if (str[i] == 'F' || str[i] == 'f')
-			number += (int)(15 * pow(16, (double)--ex));
-		else if (str[i] == 'E' || str[i] == 'e')
-			number += (int)(14 * pow(16, (double)--ex));
-		else if (str[i] == 'D' || str[i] == 'd')
-			number += (int)(13 * pow(16, (double)--ex));
-		else if (str[i] == 'C' || str[i] == 'c')
-			number += (int)(12 * pow(16, (double)--ex));
-		else if (str[i] == 'B' || str[i] == 'b')
-			number += (int)(11 * pow(16, (double)--ex));
-		else if (str[i] == 'A' || str[i] == 'a')
-			number += (int)(10 * pow(16, (double)--ex));
-		else
-			number += (int)((str[i] - 48) * pow(16, (double)--ex));
-	}
-	return (number);
-}
-
-char	*get_color_hex(char *color)
-{
-	char	**str;
-	int		color_int;
-	int		i;
-	char	*color_hex;
-	char	*tmp;
-
-	str = ft_split(color, ',');
-	i = 0;
-	color_hex = NULL;
-	while (str[i])
-	{
-		color_int = atoi(str[i]);
-		tmp = ft_puthex(color_int);
-		color_hex = ft_strjoin(color_hex, tmp);
-		free(tmp);
-		i++;
-	}
-	free_double(str);
-	return (color_hex);
-}
-
-void	get_color_in_decimal(t_cub *data)
-{
-	char	*tmp;
-	
-	tmp = get_color_hex(data->f);
-	data->f_color = hex_to_decimal(tmp);
-	free(tmp);
-	tmp = get_color_hex(data->c);
-	data->c_color = hex_to_decimal(tmp);
-	free(tmp);
-}
-
 int	check_color_is_valid(t_cub *data)
 {
 	char	**str;
 
-	if (!data->f || !data->c || data->f[ft_strlen(data->f) - 1] == ','
-		|| data->c[ft_strlen(data->c) - 1] == ',')
+	if (!data->text.f || !data->text.c
+		|| data->text.f[ft_strlen(data->text.f) - 1] == ','
+		|| data->text.c[ft_strlen(data->text.c) - 1] == ',')
 		return (0);
-	str = ft_split(data->f, ',');
+	str = ft_split(data->text.f, ',');
 	if (!check_color(str))
 		return (0);
-	str = ft_split(data->c, ',');
+	str = ft_split(data->text.c, ',');
 	if (!check_color(str))
 		return (0);
 	get_color_in_decimal(data);

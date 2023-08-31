@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:26:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/28 18:16:28 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:14:02 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,24 @@ void	initail_and_fill(t_cub *img, int i, int j)
 	}
 }
 
+// int	draw_mini_map(t_cub *img)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	if (!img->draw.line)
+// 		return (0);
+// 	while (img->draw.line[i] && img->draw.line[i][j])
+// 	{
+// 		while (img->draw.line[i] && img->draw.line[i][j])
+// 			initail_and_fill(img, i, j++);
+// 		j = 0;
+// 		i++;
+// 	}
+// 	return (1);
+// }
 void	draw_mini_map(t_cub *img)
 {
 	int	i;

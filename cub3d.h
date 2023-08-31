@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/28 20:50:55 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:02:08 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define HEIGHT 1080
 # define WIDTH 1600
 # define UNIT 640
+# define MINI_HEIGHT 300
+# define MINI_WIDTH 300
 
 // keys
 # define KEY_W 13
@@ -41,10 +43,13 @@
 # define LEFT 123
 # define RIGHT 124
 # define ESC 53
+# define TAB 48
+# define SPACE 49
+# define RET 51
 
 // rotation angle
 # define ANGLE 0.059
-# define RAY 44
+# define RAY 60
 # define COEFF 20
 # define ONE 0.0174533
 
@@ -99,23 +104,32 @@ typedef struct s_cordt
 // ray-casting
 typedef struct s_cast
 {
-	int				lenght;
-	int				color;
-	int				flag;
-	int				offset;
-	double			hx;
-	double			hy;
-	double			hx_offs;
-	double			hy_offs;
-	double			vx;
-	double			vy;
-	double			vx_offs;
-	double			vy_offs;
-	double			*distances;
-	double			ray_ang;
-	double			angl_inc;
-	double			wall_height;
-	double			step;
+	double	d_vx;
+	double	d_vy;
+	double	d_v_dist;
+	double	d_hx;
+	double	d_hy;
+	double	d_h_dist;
+	double	d_dist;
+	double	d_height;
+	int		d_flag;
+	int		lenght;
+	int		color;
+	int		flag;
+	int		offset;
+	double	hx;
+	double	hy;
+	double	hx_offs;
+	double	hy_offs;
+	double	vx;
+	double	vy;
+	double	vx_offs;
+	double	vy_offs;
+	double	ray_ang;
+	double	angl_inc;
+	double	wall_height;
+	double	step;
+	double	dist;
 }	t_cast;
 
 // mini map
@@ -125,57 +139,99 @@ typedef struct s_map
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_lenght;
+	int		height;
+	int		width;
 	int		endian;
 }	t_map;
 
 // textures
 typedef struct s_text
 {
-	void			*left_img;
-	char			*left_add;
-	int				left_width;
-	int				left_height;
-	int				left_bits_per_pixel;
-	int				left_line_lenght;
-	int				left_endian;
-	void			*right_img;
-	char			*right_add;
-	int				right_width;
-	int				right_height;
-	int				right_bits_per_pixel;
-	int				right_line_lenght;
-	int				right_endian;
-	void			*up_img;
-	char			*up_add;
-	int				up_width;
-	int				up_height;
-	int				up_bits_per_pixel;
-	int				up_line_lenght;
-	int				up_endian;
-	void			*down_img;
-	char			*down_add;
-	int				down_width;
-	int				down_height;
-	int				down_bits_per_pixel;
-	int				down_line_lenght;
-	int				down_endian;
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	char			*f;
+	char			*c;
+	int				f_color;
+	int				c_color;
+	void			*we_img;
+	char			*we_add;
+	int				we_width;
+	int				we_height;
+	int				we_bits_per_pixel;
+	int				we_line_lenght;
+	int				we_endian;
+	void			*ea_img;
+	char			*ea_add;
+	int				ea_width;
+	int				ea_height;
+	int				ea_bits_per_pixel;
+	int				ea_line_lenght;
+	int				ea_endian;
+	void			*so_img;
+	char			*so_add;
+	int				so_width;
+	int				so_height;
+	int				so_bits_per_pixel;
+	int				so_line_lenght;
+	int				so_endian;
+	void			*no_img;
+	char			*no_add;
+	int				no_width;
+	int				no_height;
+	int				no_bits_per_pixel;
+	int				no_line_lenght;
+	int				no_endian;
+	void			*door_img;
+	char			*door_add;
+	int				door_width;
+	int				door_height;
+	int				door_bits_per_pixel;
+	int				door_line_lenght;
+	int				door_endian;
 	unsigned int	*color;
+	
 }	t_text;
+
+// doors struct
+typedef struct s_door
+{
+	int				i;
+	int				j;
+	int				status;
+	struct s_door	*next;
+
+}	t_door;
+
+// fire struct
+typedef struct s_fire
+{
+	void				*fire_img;
+	char				*fire_addr;
+	int					fire_width;
+	int					fire_height;
+	int					fire_bits_per_pixel;
+	int					fire_line_lenght;
+	int					fire_endian;
+}	t_fire;
+
+// torch struct
+typedef struct s_torch
+{
+	void				*torch_img;
+	char				*torch_addr;
+	int					torch_width;
+	int					torch_height;
+	int					torch_bits_per_pixel;
+	int					torch_line_lenght;
+	int					torch_endian;
+}	t_torch;
 
 // mlx struct
 typedef struct s_cub
 {
-	int					wall;
-	int					floor;
 	int					player;
-	char				*no;
-	char				*so;
-	char				*we;
-	char				*ea;
-	char				*f;
-	char				*c;
-	int					f_color;
-	int					c_color;
 	void				*img;
 	char				*addr;
 	int					bits_per_pixel;
@@ -185,24 +241,27 @@ typedef struct s_cub
 	int					border_color;
 	void				*mlx;
 	void				*mlx_win;
-	void				*fire_img;
-	char				*fire_addr;
-	int					fire_width;
-	int					fire_height;
-	int					fire_bits_per_pixel;
-	int					fire_line_lenght;
-	int					fire_endian;
+	int					sprit1;
+	int					sprit2;
 	struct s_drawing	draw;
 	struct s_cordt		cordt;
 	struct s_cast		cast;
 	struct s_map		map;
 	struct s_text		text;
+	struct s_fire		fire;
+	struct s_torch		torch;
+	struct s_door		*doors;
 }	t_cub;
 
 // initial variables
+void	init_all_structrs(t_cub *data);
 void	initial_drawing_vars(t_cub *data);
 void	initial_cast_vars(t_cub *data);
 void	initial_textures(t_cub *data);
+void	initial_cub_struct(t_cub *data);
+void	initial_fire_struct(t_cub *data);
+void	initial_torch_struct(t_cub *data);
+void	initial_map_struct(t_cub *data);
 
 // drawing line algorithm
 int		ft_abs(int number);
@@ -227,6 +286,11 @@ int		key_release(int keycode, t_cub *data);
 // mlx mouse events
 int		mouse_move(int x, int y, t_cub *data);
 
+// mlx destroy images
+void	destroy_texture(t_cub *data);
+void	init_textures(t_cub *img);
+void	destroy_torch_and_fire(t_cub *data, int ptr);
+
 // cub && player drawing
 void	cub_draw(t_cub *data);
 void	border_cub_draw(t_cub *data);
@@ -249,24 +313,10 @@ int		ft_strcmp(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
-char	*get_color(char **str);
-int		check_color(char **str);
-int		check_color_is_valid(t_cub *data);
 char	**ft_split_two_part(char *line);
-int		check_line_is_empty(char *line);
-int		check_if_dote_cub(char *str, int start, int end);
-int		check_file_name(char *str);
 char	*delete_spaces_first_last(char *str);
 char	*get_second_part(char *line, int *start, int *end);
 char	*get_first_part(char *line, int *start, int *end);
-int		check_texture(char	*str, t_cub *data);
-int		check_path_of_text(t_cub *data);
-int		get_paths(int fd, t_cub *data);
-int		check_type_identifier(char **str, t_cub *data);
-int		check_type_identifier_next(char **str, t_cub *data);
-void	check_map(char	*str, t_cub *data);
-int		find_map(int fd);
-// char	**ft_strjoin_double(char **str1, char **str2);
 
 // map array
 int		fill_map_array(t_cub *img, char *file_name);
@@ -301,7 +351,6 @@ void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
 int		check_is_ver_wall(t_cub *data);
 int		check_is_hor_wall(t_cub *data);
 void	increment_ray_angle(t_cub *data, int is_increment);
-void	allocate_distance_array(t_cub *data);
 void	vertical_ray_equation(t_cub *data);
 void	horizontal_ray_equation(t_cub *data);
 void	draw_casted_rays(t_cub *data);
@@ -309,6 +358,7 @@ void	ray_coordinate(t_cub *data, int *i, int r, int is_hor);
 double	distance(t_cub *data, double x2, double y2);
 double	hor_ray_casting(t_cub *data);
 double	ver_ray_casting(t_cub *data);
+void	we_textures_up_down(t_cub *data, double next_px, int choice);
 
 // walls 3D, floor and ceil
 void	draw_ceil_floor(t_cub *data, int i);
@@ -318,19 +368,55 @@ void	put_map_pixel(t_cub *data, int x, int y, int color);
 void	draw_custom_map(t_cub *img);
 
 // draw textures
-void	up_textures(t_cub *data, int i);
-void	down_textures(t_cub *data, int i);
-void	right_textures(t_cub *data, int i);
-void	left_textures(t_cub *data, int i);
+void	so_textures(t_cub *data, int i);
+void	no_textures(t_cub *data, int i);
+void	ea_textures(t_cub *data, int i);
+void	we_textures(t_cub *data, int i);
 void	calculate_wall_height_offset(t_cub *data, int height, int i);
 
 // animation
 void	coordinate_animation(t_cub *data, int *ptr);
+void	coordinate_animation_torch(t_cub *data, int *ptr);
 void	draw_fire_animation(t_cub *data, int r);
+void	draw_torch_animation(t_cub *data, int r);
 
 //parsing
-int		check_texture(char	*str, t_cub *data);
 int		check_line_is_empty(char *line);
+
+// parsing textures
+int		check_texture(char	*str, t_cub *data);
+int		check_path_of_text(t_cub *data);
+int		check_type(char	*line, t_cub *data, int fd);
+
+// parsing textures utils
+int		get_paths(int fd, t_cub *data);
+int		check_type_identifier(char **str, t_cub *data);
+int		check_type_identifier_next(char **str, t_cub *data);
+
+// parsing colors
+char	*get_color(char **str);
+int		check_color(char **str);
+char	*ft_strjoin_one_char(char c, char *str);
+int		check_color_is_valid(t_cub *data);
+
+// parsing base conversion
+char	*ft_puthex(int num);
+int		hex_to_decimal(char *str);
+char	*get_color_hex(char *color);
+void	get_color_in_decimal(t_cub *data);
+
+// parsing map
+void	check_map(char	*str, t_cub *data);
+int		check_line(char *line, t_cub *data);
+int		check_border(char c, int i, int j, t_cub *data);
+int		check_caracter_is_valid(char c, t_cub *data);
+int		find_map(int fd);
+
+// parsing map utils
+void	check_map_is_empty(t_cub *data, int *i);
+int		check_end_of_map(t_cub *data, int *i);
+void	check_all_caracters(t_cub *data);
+int		check_border_map(t_cub *data);
 
 // free
 void	free_texture(t_cub *data);
@@ -342,5 +428,8 @@ void	print_error_malloc(void);
 void	print_error_caracter(t_cub *data);
 void	print_error_border(t_cub *data);
 void	print_error_map_empty(void);
+
+// door
+int	check_door(t_cub *data, double nextpx, double nextpy);
 
 #endif

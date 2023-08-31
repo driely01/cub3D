@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:53:37 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/16 16:07:58 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/27 14:06:32 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,5 @@ void	increment_ray_angle(t_cub *data, int is_increment)
 			data->cast.ray_ang += 2 * M_PI;
 		if (data->cast.ray_ang > 2 * M_PI)
 			data->cast.ray_ang -= 2 * M_PI;
-	}
-}
-
-void	allocate_distance_array(t_cub *data)
-{
-	if (!data->cast.distances)
-	{
-		data->cast.distances = malloc(sizeof(double) * WIDTH);
-		if (!data->cast.distances)
-			return ;
-	}
-	else
-	{
-		free(data->cast.distances);
-		data->cast.distances = malloc(sizeof(double) * WIDTH);
-		if (!data->cast.distances)
-			return ;
 	}
 }
