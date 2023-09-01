@@ -3,17 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_draw.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:55:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 23:03:25 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:17:22 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+void	door_textures_up_down(t_cub *data, double next_px, int choice)
+{
+	if (choice == 1)
+	{
+		data->text.color = (unsigned int *)data->text.door_add + \
+				(data->text.door_width * (data->text.door_height / 2)
+				+ ((data->cast.offset * data->text.door_width) / UNIT))
+			- (data->text.door_width * (int)next_px);
+	}
+	else if (choice == 0)
+	{
+		data->text.color = (unsigned int *)data->text.door_add + \
+				(data->text.door_width * (data->text.door_height / 2)
+				+ ((data->cast.offset * data->text.door_width) / UNIT))
+			+ (data->text.door_width * (int)next_px);
+	}
+}
+
+void	door_textures(t_cub *data, int i)
+{
+	int				j;
+	double			next_px;
+
+	calculate_door_height_offset(data, data->text.door_height, i);
+	next_px = 0;
+	j = HEIGHT / 2;
+	while (j > (HEIGHT / 2) - (data->cast.d_height / 2))
+	{
+		door_textures_up_down(data, next_px, 1);
+		my_put_pixel(data, i, j, *data->text.color);
+		next_px += data->cast.step;
+		j--;
+	}
+	j = HEIGHT / 2;
+	next_px = 0;
+	while (j < (HEIGHT / 2) + (data->cast.d_height / 2))
+	{
+		door_textures_up_down(data, next_px, 0);
+		my_put_pixel(data, i, j, *data->text.color);
+		next_px += data->cast.step;
+		j++;
+	}
+}
+
 void	check_angle(t_cub *data, int r, int choice)
 {
+	int	d;
+
+	d = 0;
 	if (choice == 1)
 	{
 		if (data->cast.ray_ang > 0 && data->cast.ray_ang < M_PI)
@@ -28,6 +75,7 @@ void	check_angle(t_cub *data, int r, int choice)
 		else
 			ea_textures(data, r);
 	}
+	get_dist_door(data, r);
 }
 
 void	ray_coordinate(t_cub *data, int *i, int r, int is_hor)
@@ -64,7 +112,6 @@ void	draw_casted_rays(t_cub *data)
 			ray_coordinate(data, &i, r, 1);
 		else
 			ray_coordinate(data, &i, r, 0);
-		draw_ceil_floor(data, r);
 		if (data->sprit1 == 1)
 			draw_fire_animation(data, r);
 		else if (data->sprit2 == 1)

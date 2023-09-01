@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/29 16:38:40 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:32:44 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define RIGHT 124
 # define ESC 53
 # define TAB 48
+# define SPACE 49
 # define RET 51
 
 // rotation angle
@@ -103,6 +104,15 @@ typedef struct s_cordt
 // ray-casting
 typedef struct s_cast
 {
+	double	d_vx;
+	double	d_vy;
+	double	d_v_dist;
+	double	d_hx;
+	double	d_hy;
+	double	d_h_dist;
+	double	d_dist;
+	double	d_height;
+	int		d_flag;
 	int		lenght;
 	int		color;
 	int		flag;
@@ -173,8 +183,26 @@ typedef struct s_text
 	int				no_bits_per_pixel;
 	int				no_line_lenght;
 	int				no_endian;
+	void			*door_img;
+	char			*door_add;
+	int				door_width;
+	int				door_height;
+	int				door_bits_per_pixel;
+	int				door_line_lenght;
+	int				door_endian;
 	unsigned int	*color;
+
 }	t_text;
+
+// doors struct
+typedef struct s_door
+{
+	int				i;
+	int				j;
+	int				status;
+	struct s_door	*next;
+
+}	t_door;
 
 // fire struct
 typedef struct s_fire
@@ -222,6 +250,7 @@ typedef struct s_cub
 	struct s_text		text;
 	struct s_fire		fire;
 	struct s_torch		torch;
+	struct s_door		*doors;
 }	t_cub;
 
 // initial variables
@@ -288,6 +317,8 @@ char	**ft_split_two_part(char *line);
 char	*delete_spaces_first_last(char *str);
 char	*get_second_part(char *line, int *start, int *end);
 char	*get_first_part(char *line, int *start, int *end);
+void	add_door(t_door **s_door, t_door *s_new);
+t_door	*new_door(int i, int j);
 
 // map array
 int		fill_map_array(t_cub *img, char *file_name);
@@ -317,6 +348,8 @@ void	move_right_end_check(t_cub *data);
 void	move_left_and_check(t_cub *data);
 void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
 void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
+void	backward_slid(t_cub *data, double prevpx, double prevpy);
+void	forward_slid(t_cub *data, double nextpx, double nextpy);
 
 // ray casting
 int		check_is_ver_wall(t_cub *data);
@@ -329,6 +362,7 @@ void	ray_coordinate(t_cub *data, int *i, int r, int is_hor);
 double	distance(t_cub *data, double x2, double y2);
 double	hor_ray_casting(t_cub *data);
 double	ver_ray_casting(t_cub *data);
+void	we_textures_up_down(t_cub *data, double next_px, int choice);
 
 // walls 3D, floor and ceil
 void	draw_ceil_floor(t_cub *data, int i);
@@ -391,6 +425,7 @@ int		check_border_map(t_cub *data);
 // free
 void	free_texture(t_cub *data);
 void	free_double(char **str);
+void	free_doors(t_door *doors);
 
 // error_msg
 void	print_error_fd(void);
@@ -398,5 +433,19 @@ void	print_error_malloc(void);
 void	print_error_caracter(t_cub *data);
 void	print_error_border(t_cub *data);
 void	print_error_map_empty(void);
+
+// door
+int		check_door(t_cub *data, double nextpx, double nextpy);
+void	door_ver_coordinates(t_cub *data);
+void	door_hor_coordinates(t_cub *data);
+void	get_dist_door(t_cub *data, int r);
+void	door_textures(t_cub *data, int i);
+void	calculate_door_height_offset(t_cub *data, int height, int i);
+void	get_door(t_cub *data, int x, int y);
+
+//protect_img
+void	protect_img_textures(t_cub *img);
+void	protect_img_sprit_f(t_cub *data);
+void	protect_img_sprit_tr(t_cub *data);
 
 #endif

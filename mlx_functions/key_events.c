@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:10:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 13:51:05 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:32:09 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 int	destroy(t_cub *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
+	free_doors(data->doors);
+	free_double(data->draw.line);
+	free_texture(data);
 	exit(0);
 	return (0);
 }
@@ -33,13 +36,30 @@ void	animation_event(t_cub *data)
 	}
 }
 
+void	open_close_door(t_cub *data)
+{
+	if (data->draw.line[(int)(data->draw.py / UNIT) + 1] \
+		[(int)(data->draw.px / UNIT)] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT),
+			(int)(data->draw.py / UNIT) + 1);
+	if (data->draw.line[(int)(data->draw.py / UNIT) - 1] \
+		[(int)(data->draw.px / UNIT)] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT),
+			(int)(data->draw.py / UNIT) - 1);
+	if (data->draw.line[(int)(data->draw.py / UNIT)] \
+		[(int)(data->draw.px / UNIT) + 1] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT) + 1,
+			(int)(data->draw.py / UNIT));
+	if (data->draw.line[(int)(data->draw.py / UNIT)] \
+		[(int)(data->draw.px / UNIT) - 1] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT) - 1,
+			(int)(data->draw.py / UNIT));
+}
+
 int	key_press(int keycode, t_cub *data)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		exit(0);
-	}
+		destroy(data);
 	else if (keycode == KEY_W)
 		data->draw.forward = 1;
 	else if (keycode == KEY_S)
@@ -54,6 +74,8 @@ int	key_press(int keycode, t_cub *data)
 		data->draw.rotright = 1;
 	else if (keycode == TAB)
 		animation_event(data);
+	else if (keycode == SPACE)
+		open_close_door(data);
 	else
 		return (0);
 	return (1);

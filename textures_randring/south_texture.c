@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   south_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:00:04 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 15:06:47 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:28:52 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	so_textures(t_cub *data, int i)
 		next_px += data->cast.step;
 		j++;
 	}
+	draw_ceil_floor(data, i);
 }

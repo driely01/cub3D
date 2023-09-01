@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:51:49 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:17:55 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:47:05 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ void	check_and_draw_map(t_cub *img, int x, int y)
 		&& img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))] \
 		[(int)(img->draw.posx / (UNIT / COEFF))] == '1')
 		put_map_pixel(img, x, y, 0xc65a1d);
+	else if ((int)(img->draw.posy / (UNIT / COEFF)) < img->draw.height
+		&& ((int)(img->draw.posx / (UNIT / COEFF)))
+		< ft_strlen(img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))])
+		&& img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))] \
+		[(int)(img->draw.posx / (UNIT / COEFF))] == 'D')
+		put_map_pixel(img, x, y, 0x6e8434);
 	else
 		put_map_pixel(img, x, y, 0xc89f40);
 	img->draw.posx++;

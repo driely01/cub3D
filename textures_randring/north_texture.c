@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   north_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:09:46 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 15:02:25 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:29:29 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	no_textures(t_cub *data, int i)
 		next_px += data->cast.step;
 		j++;
 	}
+	draw_ceil_floor(data, i);
 }
