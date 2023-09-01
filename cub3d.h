@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/01 01:26:29 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 02:07:02 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -442,5 +442,10 @@ void	get_dist_door(t_cub *data, int r);
 void	door_textures(t_cub *data, int i);
 void	calculate_door_height_offset(t_cub *data, int height, int i);
 void	get_door(t_cub *data, int x, int y);
+
+//protect_img
+void	protect_img_textures(t_cub *img);
+void	protect_img_sprit_f(t_cub *data);
+void	protect_img_sprit_tr(t_cub *data);
 
 #endif

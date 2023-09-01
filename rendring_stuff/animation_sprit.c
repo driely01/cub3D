@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_sprit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:46:46 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/26 12:17:09 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 02:11:48 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	coordinate_animation_part_two(t_cub *data, int *ptr)
 				&data->fire.fire_width, &data->fire.fire_height);
 		*ptr = 0;
 	}
+	protect_img_sprit_tr(data);
 }
 
 void	coordinate_animation(t_cub *data, int *ptr)

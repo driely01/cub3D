@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/09/01 01:30:02 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 02:05:51 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_textures(t_cub *img)
 	img->text.door_img = mlx_xpm_file_to_image(img->mlx,
 			"textures/ar/ar1.xpm",
 			&img->text.door_width, &img->text.door_height);
+	protect_img_textures(img);
 	init_add_textures(img);
 }
 

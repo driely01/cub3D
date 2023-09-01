@@ -48,6 +48,7 @@ SRC = main.c \
 	  ${STRINGS}ft_strjoin.c \
 	  ${STRINGS}ft_lstnew.c \
 	  ${STRINGS}ft_lst_addback.c \
+	  ${STRINGS}protect_imgs.c \
 	  ${MLX}put_pixel.c \
 	  ${MLX}key_events.c \
 	  ${MLX}mouse_events.c \

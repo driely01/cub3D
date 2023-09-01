@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_fire.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 12:17:48 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/26 16:17:44 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 02:13:12 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	coordinate_animation_part_troch_two(t_cub *data, int *ptr)
 				&data->torch.torch_width, &data->torch.torch_height);
 		*ptr = 0;
 	}
+	protect_img_sprit_f(data);
 }
 
 void	coordinate_animation_torch(t_cub *data, int *ptr)
