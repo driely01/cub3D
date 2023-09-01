@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:10:14 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/31 16:01:58 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:32:09 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 int	destroy(t_cub *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
+	free_doors(data->doors);
+	free_double(data->draw.line);
+	free_texture(data);
 	exit(0);
 	return (0);
 }
@@ -33,42 +36,30 @@ void	animation_event(t_cub *data)
 	}
 }
 
-void	get_door(t_cub *data, int x, int y)
-{
-	t_door *p;
-
-	p = data->doors;
-	while (p)
-	{
-		if (p->i == y && p->j == x)
-			break;
-		p = p->next;
-	}
-	if (p->status == 0)
-		p->status = 1;
-	else
-		p->status = 0;
-}
-
 void	open_close_door(t_cub *data)
 {
-	if (data->draw.line[(int)(data->draw.py / UNIT) + 1][(int)(data->draw.px / UNIT)] == 'D')
-		get_door(data, (int)(data->draw.px / UNIT), (int)(data->draw.py / UNIT) + 1);
-	if (data->draw.line[(int)(data->draw.py / UNIT) - 1][(int)(data->draw.px / UNIT)] == 'D')
-		get_door(data, (int)(data->draw.px / UNIT), (int)(data->draw.py / UNIT) - 1);
-	if (data->draw.line[(int)(data->draw.py / UNIT)][(int)(data->draw.px / UNIT) + 1] == 'D')
-		get_door(data, (int)(data->draw.px / UNIT) + 1, (int)(data->draw.py / UNIT));
-	if (data->draw.line[(int)(data->draw.py / UNIT)][(int)(data->draw.px / UNIT) - 1] == 'D')
-		get_door(data, (int)(data->draw.px / UNIT) - 1, (int)(data->draw.py / UNIT));
+	if (data->draw.line[(int)(data->draw.py / UNIT) + 1] \
+		[(int)(data->draw.px / UNIT)] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT),
+			(int)(data->draw.py / UNIT) + 1);
+	if (data->draw.line[(int)(data->draw.py / UNIT) - 1] \
+		[(int)(data->draw.px / UNIT)] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT),
+			(int)(data->draw.py / UNIT) - 1);
+	if (data->draw.line[(int)(data->draw.py / UNIT)] \
+		[(int)(data->draw.px / UNIT) + 1] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT) + 1,
+			(int)(data->draw.py / UNIT));
+	if (data->draw.line[(int)(data->draw.py / UNIT)] \
+		[(int)(data->draw.px / UNIT) - 1] == 'D')
+		get_door(data, (int)(data->draw.px / UNIT) - 1,
+			(int)(data->draw.py / UNIT));
 }
 
 int	key_press(int keycode, t_cub *data)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		exit(0);
-	}
+		destroy(data);
 	else if (keycode == KEY_W)
 		data->draw.forward = 1;
 	else if (keycode == KEY_S)

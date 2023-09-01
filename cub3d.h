@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:13:29 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/31 16:02:08 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:26:29 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ typedef struct s_text
 	int				door_line_lenght;
 	int				door_endian;
 	unsigned int	*color;
-	
+
 }	t_text;
 
 // doors struct
@@ -317,6 +317,8 @@ char	**ft_split_two_part(char *line);
 char	*delete_spaces_first_last(char *str);
 char	*get_second_part(char *line, int *start, int *end);
 char	*get_first_part(char *line, int *start, int *end);
+void	add_door(t_door **s_door, t_door *s_new);
+t_door	*new_door(int i, int j);
 
 // map array
 int		fill_map_array(t_cub *img, char *file_name);
@@ -346,6 +348,8 @@ void	move_right_end_check(t_cub *data);
 void	move_left_and_check(t_cub *data);
 void	right_slide_wall(t_cub *data, double prevpx, double prevpy);
 void	left_slide_wall(t_cub *data, double nextpx, double nextpy);
+void	backward_slid(t_cub *data, double prevpx, double prevpy);
+void	forward_slid(t_cub *data, double nextpx, double nextpy);
 
 // ray casting
 int		check_is_ver_wall(t_cub *data);
@@ -421,6 +425,7 @@ int		check_border_map(t_cub *data);
 // free
 void	free_texture(t_cub *data);
 void	free_double(char **str);
+void	free_doors(t_door *doors);
 
 // error_msg
 void	print_error_fd(void);
@@ -430,6 +435,12 @@ void	print_error_border(t_cub *data);
 void	print_error_map_empty(void);
 
 // door
-int	check_door(t_cub *data, double nextpx, double nextpy);
+int		check_door(t_cub *data, double nextpx, double nextpy);
+void	door_ver_coordinates(t_cub *data);
+void	door_hor_coordinates(t_cub *data);
+void	get_dist_door(t_cub *data, int r);
+void	door_textures(t_cub *data, int i);
+void	calculate_door_height_offset(t_cub *data, int height, int i);
+void	get_door(t_cub *data, int x, int y);
 
 #endif

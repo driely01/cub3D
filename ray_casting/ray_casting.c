@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:30:05 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/30 21:18:37 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:16:14 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,7 @@ double	ver_ray_casting(t_cub *data)
 			&& data->draw.line[(int)(data->cast.vy / UNIT)] \
 			[(int)(data->cast.vx / UNIT)] != 0)
 		{
-			if (data->draw.line[(int)(data->cast.vy / UNIT)][(int)(data->cast.vx / UNIT)] == 'D' && data->cast.d_vx == 0)
-			{
-				data->cast.d_vx = data->cast.vx;
-				data->cast.d_vy = data->cast.vy;
-				data->cast.d_v_dist = distance(data, data->cast.d_vx, data->cast.d_vy);
-			}
+			door_ver_coordinates(data);
 			if (!check_is_ver_wall(data))
 				break ;
 		}
@@ -102,9 +97,8 @@ double	ver_ray_casting(t_cub *data)
 	return (distance(data, data->cast.vx, data->cast.vy));
 }
 
-double	 hor_ray_casting(t_cub *data)
+double	hor_ray_casting(t_cub *data)
 {
-	
 	data->cast.d_hx = 0;
 	data->cast.d_hx = 0;
 	horizontal_ray_equation(data);
@@ -122,12 +116,7 @@ double	 hor_ray_casting(t_cub *data)
 			&& data->draw.line[(int)(data->cast.hy / UNIT)] \
 			[(int)(data->cast.hx / UNIT)] != 0)
 		{
-			if (data->draw.line[(int)(data->cast.hy / UNIT)][(int)(data->cast.hx / UNIT)] == 'D' && data->cast.d_hx == 0)
-			{
-				data->cast.d_hx = data->cast.hx;
-				data->cast.d_hy = data->cast.hy;
-				data->cast.d_h_dist = distance(data, data->cast.d_hx, data->cast.d_hy);
-			}
+			door_hor_coordinates(data);
 			if (!check_is_hor_wall(data))
 				break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:55:27 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/30 23:28:29 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:17:22 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@ void	door_textures_up_down(t_cub *data, double next_px, int choice)
 				+ ((data->cast.offset * data->text.door_width) / UNIT))
 			+ (data->text.door_width * (int)next_px);
 	}
-}
-
-void	calculate_door_height_offset(t_cub *data, int height, int i)
-{
-	(void)i;
-	data->cast.d_height = UNIT / (data->cast.d_dist
-			* cos(fabs(data->draw.pa - data->cast.ray_ang))) * HEIGHT;
-	if (data->cast.d_flag == 1)
-		data->cast.offset = (int)data->cast.d_hx % UNIT;
-	else
-		data->cast.offset = (int)data->cast.d_vy % UNIT;
-	data->cast.step = height / data->cast.d_height;
-	if (data->cast.d_height > HEIGHT)
-		data->cast.d_height = HEIGHT;
 }
 
 void	door_textures(t_cub *data, int i)
@@ -72,6 +58,9 @@ void	door_textures(t_cub *data, int i)
 
 void	check_angle(t_cub *data, int r, int choice)
 {
+	int	d;
+
+	d = 0;
 	if (choice == 1)
 	{
 		if (data->cast.ray_ang > 0 && data->cast.ray_ang < M_PI)
@@ -86,34 +75,7 @@ void	check_angle(t_cub *data, int r, int choice)
 		else
 			ea_textures(data, r);
 	}
-	if (data->cast.d_vx != 0 || data->cast.d_hx != 0)
-	{
-		if (data->cast.d_vx == 0 && data->cast.d_hx != 0)
-		{
-			data->cast.d_dist = data->cast.d_h_dist;
-			data->cast.d_flag = 1;
-		}
-		else if (data->cast.d_vx != 0 && data->cast.d_hx == 0)
-		{
-			data->cast.d_dist = data->cast.d_v_dist;
-			data->cast.d_flag = 0;
-		}
-		else if (data->cast.d_vx != 0 && data->cast.d_hx != 0)
-		{
-			if (data->cast.d_v_dist > data->cast.d_h_dist)
-			{
-				data->cast.d_dist = data->cast.d_h_dist;
-				data->cast.d_flag = 1;
-			}
-			else
-			{
-				data->cast.d_dist = data->cast.d_v_dist;
-				data->cast.d_flag = 0;
-			}
-		}
-		if (data->cast.d_dist < data->cast.dist)
-			door_textures(data, r);
-	}
+	get_dist_door(data, r);
 }
 
 void	ray_coordinate(t_cub *data, int *i, int r, int is_hor)

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_after_rot_move.c                              :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/12 15:39:56 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/31 19:22:25 by amoukhle         ###   ########.fr       */
+/*   Created: 2023/09/01 01:23:55 by amoukhle          #+#    #+#             */
+/*   Updated: 2023/09/01 01:24:47 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	drawing_all_things(t_cub *img)
+t_door	*new_door(int i, int j)
 {
-	static int	ptr;
+	t_door	*new;
 
-	destroy_init_img(img, 1);
-	coordinate_animation_torch(img, &ptr);
-	coordinate_animation(img, &ptr);
-	ptr++;
-	init_textures(img);
-	move_rotate_player(img);
-	draw_casted_rays(img);
-	draw_custom_map(img);
-	destroy_texture(img);
-	destroy_torch_and_fire(img, ptr);
-	destroy_init_img(img, 2);
-	return (1);
+	new = (t_door *)malloc(sizeof(t_door));
+	if (!new)
+		print_error_malloc();
+	new->i = i;
+	new->j = j;
+	new->status = 0;
+	new->next = NULL;
+	return (new);
 }

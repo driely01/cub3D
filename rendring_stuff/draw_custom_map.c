@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_custom_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:51:49 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:17:55 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:25:52 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ void	check_and_draw_map(t_cub *img, int x, int y)
 		&& img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))] \
 		[(int)(img->draw.posx / (UNIT / COEFF))] == '1')
 		put_map_pixel(img, x, y, 0xc65a1d);
+	else if ((int)(img->draw.posy / (UNIT / COEFF)) < img->draw.height
+		&& ((int)(img->draw.posx / (UNIT / COEFF)))
+		< ft_strlen(img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))])
+		&& img->draw.line[(int)(img->draw.posy / (UNIT / COEFF))] \
+		[(int)(img->draw.posx / (UNIT / COEFF))] == 'D')
+		put_map_pixel(img, x, y, 0x000000);
 	else
 		put_map_pixel(img, x, y, 0xc89f40);
 	img->draw.posx++;

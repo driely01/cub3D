@@ -6,7 +6,7 @@
 /*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/30 23:13:29 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:30:02 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,8 @@ void	destroy_init_img(t_cub *img, int choice)
 	}
 }
 
-void	init_textures(t_cub *img)
+void	init_add_textures(t_cub *img)
 {
-	img->text.so_img = mlx_xpm_file_to_image(img->mlx,
-			img->text.so,
-			&img->text.so_width, &img->text.so_height);
-	img->text.no_img = mlx_xpm_file_to_image(img->mlx,
-			img->text.no,
-			&img->text.no_width, &img->text.no_height);
-	img->text.ea_img = mlx_xpm_file_to_image(img->mlx,
-			img->text.ea,
-			&img->text.ea_width, &img->text.ea_height);
-	img->text.we_img = mlx_xpm_file_to_image(img->mlx,
-			img->text.we,
-			&img->text.we_width, &img->text.we_height);
-	img->text.door_img = mlx_xpm_file_to_image(img->mlx,
-			"textures/ar/ar1.xpm",
-			&img->text.door_width, &img->text.door_height);
 	img->text.so_add = mlx_get_data_addr(img->text.so_img,
 			&img->text.so_bits_per_pixel, &img->text.so_line_lenght,
 			&img->text.so_endian);
@@ -68,12 +53,33 @@ void	init_textures(t_cub *img)
 			&img->text.door_endian);
 }
 
+void	init_textures(t_cub *img)
+{
+	img->text.so_img = mlx_xpm_file_to_image(img->mlx,
+			img->text.so,
+			&img->text.so_width, &img->text.so_height);
+	img->text.no_img = mlx_xpm_file_to_image(img->mlx,
+			img->text.no,
+			&img->text.no_width, &img->text.no_height);
+	img->text.ea_img = mlx_xpm_file_to_image(img->mlx,
+			img->text.ea,
+			&img->text.ea_width, &img->text.ea_height);
+	img->text.we_img = mlx_xpm_file_to_image(img->mlx,
+			img->text.we,
+			&img->text.we_width, &img->text.we_height);
+	img->text.door_img = mlx_xpm_file_to_image(img->mlx,
+			"textures/ar/ar1.xpm",
+			&img->text.door_width, &img->text.door_height);
+	init_add_textures(img);
+}
+
 void	destroy_texture(t_cub *data)
 {
 	mlx_destroy_image(data->mlx, data->text.so_img);
 	mlx_destroy_image(data->mlx, data->text.no_img);
 	mlx_destroy_image(data->mlx, data->text.we_img);
 	mlx_destroy_image(data->mlx, data->text.ea_img);
+	mlx_destroy_image(data->mlx, data->text.door_img);
 }
 
 void	init_win_put_img(t_cub *img, int choice)
