@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 01:12:42 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/08/29 16:18:45 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/31 00:55:47 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	find_map(int fd)
 int	check_caracter_is_valid(char c, t_cub *data)
 {
 	if (c != '1' && c != '0' && c != 'N' && c != ' '
-		&& c != 'S' && c != 'E' && c != 'W')
+		&& c != 'S' && c != 'E' && c != 'W' && c != 'D')
 		return (0);
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		data->player += 1;
@@ -40,7 +40,7 @@ int	check_caracter_is_valid(char c, t_cub *data)
 
 int	check_border(char c, int i, int j, t_cub *data)
 {
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D')
 	{
 		if (j == 0 || i == 0 || !data->draw.line[i + 1])
 			return (0);
@@ -90,6 +90,7 @@ void	check_map(char	*str, t_cub *data)
 	if (!check_border_map(data))
 	{
 		free_double(data->draw.line);
+		free_texture(data);
 		write(2, "Error\n", 6);
 		write(2, "the map is not valid\n", 21);
 		exit(1);

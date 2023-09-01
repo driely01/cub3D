@@ -6,7 +6,7 @@
 /*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:08:59 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/29 16:13:15 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:46:25 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ void	destroy_init_img(t_cub *img, int choice)
 	}
 }
 
+void	init_add_textures(t_cub *img)
+{
+	img->text.so_add = mlx_get_data_addr(img->text.so_img,
+			&img->text.so_bits_per_pixel, &img->text.so_line_lenght,
+			&img->text.so_endian);
+	img->text.no_add = mlx_get_data_addr(img->text.no_img,
+			&img->text.no_bits_per_pixel, &img->text.no_line_lenght,
+			&img->text.no_endian);
+	img->text.ea_add = mlx_get_data_addr(img->text.ea_img,
+			&img->text.ea_bits_per_pixel, &img->text.ea_line_lenght,
+			&img->text.ea_endian);
+	img->text.we_add = mlx_get_data_addr(img->text.we_img,
+			&img->text.we_bits_per_pixel, &img->text.we_line_lenght,
+			&img->text.we_endian);
+	img->text.door_add = mlx_get_data_addr(img->text.door_img,
+			&img->text.door_bits_per_pixel, &img->text.door_line_lenght,
+			&img->text.door_endian);
+}
+
 void	init_textures(t_cub *img)
 {
 	img->text.so_img = mlx_xpm_file_to_image(img->mlx,
@@ -48,18 +67,11 @@ void	init_textures(t_cub *img)
 	img->text.we_img = mlx_xpm_file_to_image(img->mlx,
 			img->text.we,
 			&img->text.we_width, &img->text.we_height);
-	img->text.so_add = mlx_get_data_addr(img->text.so_img,
-			&img->text.so_bits_per_pixel, &img->text.so_line_lenght,
-			&img->text.so_endian);
-	img->text.no_add = mlx_get_data_addr(img->text.no_img,
-			&img->text.no_bits_per_pixel, &img->text.no_line_lenght,
-			&img->text.no_endian);
-	img->text.ea_add = mlx_get_data_addr(img->text.ea_img,
-			&img->text.ea_bits_per_pixel, &img->text.ea_line_lenght,
-			&img->text.ea_endian);
-	img->text.we_add = mlx_get_data_addr(img->text.we_img,
-			&img->text.we_bits_per_pixel, &img->text.we_line_lenght,
-			&img->text.we_endian);
+	img->text.door_img = mlx_xpm_file_to_image(img->mlx,
+			"textures/door/door.xpm",
+			&img->text.door_width, &img->text.door_height);
+	protect_img_textures(img);
+	init_add_textures(img);
 }
 
 void	destroy_texture(t_cub *data)
@@ -68,6 +80,7 @@ void	destroy_texture(t_cub *data)
 	mlx_destroy_image(data->mlx, data->text.no_img);
 	mlx_destroy_image(data->mlx, data->text.we_img);
 	mlx_destroy_image(data->mlx, data->text.ea_img);
+	mlx_destroy_image(data->mlx, data->text.door_img);
 }
 
 void	init_win_put_img(t_cub *img, int choice)

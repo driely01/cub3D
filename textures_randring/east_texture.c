@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   right_texture.c                                    :+:      :+:    :+:   */
+/*   east_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:16:57 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/27 14:56:52 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:29:34 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	ea_textures(t_cub *data, int i)
 		next_px += data->cast.step;
 		j++;
 	}
+	draw_ceil_floor(data, i);
 }

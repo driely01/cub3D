@@ -46,6 +46,9 @@ SRC = main.c \
 	  ${STRINGS}ft_split.c \
 	  ${STRINGS}ft_free.c \
 	  ${STRINGS}ft_strjoin.c \
+	  ${STRINGS}ft_lstnew.c \
+	  ${STRINGS}ft_lst_addback.c \
+	  ${STRINGS}protect_imgs.c \
 	  ${MLX}put_pixel.c \
 	  ${MLX}key_events.c \
 	  ${MLX}mouse_events.c \
@@ -53,6 +56,7 @@ SRC = main.c \
 	  ${COORD}mini_map.c \
 	  ${COORD}move_left_and_right.c \
 	  ${COORD}wall_silde.c \
+	  ${COORD}doors_coordinates.c \
 	  ${COORD}player_move_rotations.c \
 	  ${RCAST}coordinate_and_equations.c \
 	  ${RCAST}ray_casting.c \
@@ -67,7 +71,7 @@ HEADERS = cub3d.h
 
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -Ofast#-fsanitize=address -g
 CC = cc
 RM = rm -f
 

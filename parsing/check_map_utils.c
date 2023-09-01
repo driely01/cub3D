@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:18:11 by del-yaag          #+#    #+#             */
-/*   Updated: 2023/08/29 16:18:50 by del-yaag         ###   ########.fr       */
+/*   Updated: 2023/08/31 00:56:10 by amoukhle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	check_map_is_empty(t_cub *data, int *i)
 			return ;
 	}
 	free_double(data->draw.line);
+	free_texture(data);
 	write(2, "Error\n", 6);
 	write(2, "the map is not set\n", 19);
 	exit(1);
