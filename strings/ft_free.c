@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoukhle <amoukhle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: del-yaag <del-yaag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:30:46 by amoukhle          #+#    #+#             */
-/*   Updated: 2023/09/01 01:18:02 by amoukhle         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:13:11 by del-yaag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_doors(t_door *doors)
 {
 	t_door	*p;
 
-	while (doors->next)
+	while (doors && doors->next)
 	{
 		p = doors->next;
 		free(doors);
