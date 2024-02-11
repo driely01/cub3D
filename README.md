@@ -1,5 +1,8 @@
 # cub3D
 
+This project is inspired by the world-famous Wolfenstein 3D game, which
+was the first FPS ever. It will enable us to explore ray-casting.
+
 <img width="1600" alt="Screen Shot 2023-08-23 at 9 19 58 PM" src="https://github.com/driely01/cub3D/assets/41493879/0f9558b6-a97c-4e5e-b461-da0f0094b1cf">
 <img width="1600" alt="Screen Shot 2023-08-26 at 5 41 51 PM" src="https://github.com/driely01/cub3D/assets/41493879/f495012d-f7f4-4db5-a458-86ad7715872c">
 <img width="1600" alt="Screen Shot 2023-08-26 at 5 42 15 PM" src="https://github.com/driely01/cub3D/assets/41493879/55c1e328-ab53-49ed-8dec-73bdd2de13ae">
